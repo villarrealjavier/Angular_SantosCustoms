@@ -5,6 +5,7 @@ import { UpdateComponent } from './update/update.component';
 import { ListComponent } from './list/list.component';
 import { DeleteComponent } from './delete/delete.component';
 import { CarsRoutingModule } from '../cars/cars-routing.module';
+import { CategoryRoutingModule } from './cars-routing.module';
 
 
 
@@ -18,13 +19,13 @@ import { CarsRoutingModule } from '../cars/cars-routing.module';
   ],
   imports: [
     CommonModule,
-    CarsRoutingModule
+    CategoryRoutingModule
   ],exports:[
     AddComponent,
     UpdateComponent,
     ListComponent,
     DeleteComponent,
-    CarsRoutingModule
+    CategoryRoutingModule
   ]
 })
 export class CategoryModule { }

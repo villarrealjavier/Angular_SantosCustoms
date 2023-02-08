@@ -1,11 +1,10 @@
-.fondo{
-    margin: 0;
-    padding: 0;
-}
-body {
-    width: 100%;
-}
-.container{
-
-    overflow-x: hidden;
-}
+.carousel-item {
+    height: 85vh;
+    min-height: 95vh;
+   
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }

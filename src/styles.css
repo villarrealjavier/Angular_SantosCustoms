@@ -5,6 +5,7 @@ html {
   body {
     margin: 0;
     margin-bottom: 40px;
+    overflow-x: hidden;
   }
   footer {
     background-color: black;

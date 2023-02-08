@@ -8,3 +8,12 @@
     -o-background-size: cover;
     background-size: cover;
   }
+  .bienvenida{
+    padding: 2%;
+  }
+  #descripcion{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+  }
+  
+ 

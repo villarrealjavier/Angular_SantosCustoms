@@ -10,22 +10,22 @@ const routes: Routes = [
     path: '',
     children:[
       {
-        path: 'add',
+        path: 'addCar',
         component: AddComponent,
     
       },
       {
-        path: 'delete',
+        path: 'deleteCar',
         component: DeleteComponent,
     
       },
       {
-        path: 'list',
+        path: 'listCar',
         component: ListComponent,
     
       },
       {
-        path: 'update',
+        path: 'updateCar',
         component: UpdateComponent,
     
       },

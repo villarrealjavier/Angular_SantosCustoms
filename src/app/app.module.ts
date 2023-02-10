@@ -7,8 +7,9 @@ import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CarsModule } from './cars/cars.module';
-import { CategoryModule } from './category/category.module';
+
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CategoryModule } from './category/category.module';
 
 
 @NgModule({

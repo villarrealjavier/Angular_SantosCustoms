@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CategoryModule } from './category/category.module';
 
 
 
@@ -17,8 +18,8 @@ const routes: Routes = [
    
   },
   {
-  path: 'category',
-  loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
+    path: 'category',
+    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
   },
   {
         path: '**',

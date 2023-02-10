@@ -1,30 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddComponent } from './add/add.component';
-import { UpdateComponent } from './update/update.component';
-import { ListComponent } from './list/list.component';
 import { DeleteComponent } from './delete/delete.component';
-import { CarsRoutingModule } from '../cars/cars-routing.module';
-import { CategoryRoutingModule } from './cars-routing.module';
+import { AddComponent } from './add/add.component';
+import { ListComponent } from './list/list.component';
+import { UpdateComponent } from './update/update.component';
+import { CategoryRoutingModule } from './category-routing.module';
 
 
 
 @NgModule({
   declarations: [
-    AddComponent,
-    UpdateComponent,
-    ListComponent,
     DeleteComponent,
-    
+    AddComponent,
+    ListComponent,
+    UpdateComponent
   ],
   imports: [
     CommonModule,
     CategoryRoutingModule
+    
   ],exports:[
-    AddComponent,
-    UpdateComponent,
-    ListComponent,
     DeleteComponent,
+    AddComponent,
+    ListComponent,
+    UpdateComponent,
     CategoryRoutingModule
   ]
 })

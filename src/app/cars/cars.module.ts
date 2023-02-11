@@ -17,7 +17,7 @@ import { CarsRoutingModule } from './cars-routing.module';
   ],
   imports: [
     CommonModule,
-    CarsRoutingModule
+    CarsRoutingModule,
   ],exports:[
     DeleteComponent,
     AddComponent,

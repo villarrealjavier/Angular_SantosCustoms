@@ -10,6 +10,7 @@ import { CarsModule } from './cars/cars.module';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CategoryModule } from './category/category.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CategoryModule } from './category/category.module';
     SharedModule,
     RouterModule,
     CarsModule,
-    CategoryModule
+    CategoryModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,8 @@ import { ListComponent } from './list/list.component';
 import { UpdateComponent } from './update/update.component';
 import { CarsRoutingModule } from './cars-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -19,7 +21,10 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     CarsRoutingModule,
-    SharedModule
+    SharedModule,
+    TableModule,
+    ButtonModule
+
   ],exports:[
     DeleteComponent,
     AddComponent,

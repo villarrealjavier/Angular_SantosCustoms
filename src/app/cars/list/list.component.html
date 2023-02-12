@@ -16,9 +16,41 @@
 </div>
 
 <div class="row  d-flex justify-content-center w-100">
-    
+  <p-table [value]="cars">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Imagen</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Precio</th>
+        <th>Color</th>
+        <th>Centimetros Cúbicos</th>
+        <th>Potencia</th>
+        <th>Administrador</th>
+      
+  
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+      <tr *ngFor="let car of cars">
+        <td><img align="center" src="{{car.img}}" alt="..." class="centrar" width="250px" height="170px" ></td>
+        <td >{{car.name_brand.name_brand}}</td>
+        <td >{{car.name_brand.model}}</td>
+        <td >{{car.price}}</td>
+        <td >{{car.color}}</td>
+        <td >{{car.cubic_cent}}</td>
+        <td >{{car.hp}}</td>
+  
+  
+        <td>
+          <button pButton icon="pi pi-pencil" label="Edit"></button>
+          <button pButton icon="pi pi-trash" label="Delete"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
        
-          <div class="card m-2"  *ngFor="let car of cars" style="width: 20rem;">
+         <!-- <div class="card m-2"  *ngFor="let car of cars" style="width: 20rem;">
             <img src="{{car.img}}" class="card-img-top pt-4" alt="...">
             <div class="card-body">
               <h5 class="card-title"><b>{{car.name_brand.name_brand}}</b>
@@ -29,7 +61,7 @@
                 <b>Potencia:</b> {{car.hp}}cv,<br> <b>Centímetros cúbicos:</b> {{car.cubic_cent}}</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
-          </div>
+          </div>-->
 
     
 

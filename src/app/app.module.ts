@@ -11,12 +11,12 @@ import { CarsModule } from './cars/cars.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CategoryModule } from './category/category.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './home/home.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NotFoundComponent
   ],
   imports: [
@@ -26,7 +26,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     RouterModule,
     CarsModule,
     CategoryModule,
-    HttpClientModule
+    HttpClientModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { UpdateComponent } from './update/update.component';
 import { CarsRoutingModule } from './cars-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -18,6 +19,7 @@ import { CarsRoutingModule } from './cars-routing.module';
   imports: [
     CommonModule,
     CarsRoutingModule,
+    SharedModule
   ],exports:[
     DeleteComponent,
     AddComponent,

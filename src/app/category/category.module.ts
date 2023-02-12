@@ -5,6 +5,7 @@ import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { UpdateComponent } from './update/update.component';
 import { CategoryRoutingModule } from './category-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,7 +18,8 @@ import { CategoryRoutingModule } from './category-routing.module';
   ],
   imports: [
     CommonModule,
-    CategoryRoutingModule
+    CategoryRoutingModule,
+    SharedModule
     
   ],exports:[
     DeleteComponent,

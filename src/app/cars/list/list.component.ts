@@ -12,11 +12,15 @@ export class ListComponent implements OnInit {
   constructor(private service:ListService) { }
 
   cars:cars[]=[]
+  totalRecords!:number;
 
   ngOnInit(): void {
     this.service.getCars().subscribe({
       next: (resp)=> this.cars=resp
     })
+
+    this.totalRecords=this.cars.length
+
   }
 
 }

@@ -8,6 +8,7 @@ import { CarsRoutingModule } from './cars-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -23,7 +24,8 @@ import { ButtonModule } from 'primeng/button';
     CarsRoutingModule,
     SharedModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    PaginatorModule,
 
   ],exports:[
     DeleteComponent,

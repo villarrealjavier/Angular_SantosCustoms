@@ -16,7 +16,43 @@
 </div>
 
 <div class="row  d-flex justify-content-center w-100">
-  <p-table [value]="cars">
+  
+  <p-table *ngIf="cars" [value]="cars"   [paginator]="true" 
+            [rows]="10" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
+    <ng-template pTemplate="header">
+        <tr>
+          <th>Imagen</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Precio</th>
+          <th>Color</th>
+          <th>Centimetros Cúbicos</th>
+          <th>Potencia</th>
+          <th>Administrador</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+        <tr>
+          <td><img align="center" src="{{car.img}}" alt="..." class="centrar" width="250px" height="170px" ></td>
+          <td >{{car.name_brand.name_brand}}</td>
+          <td >{{car.name_brand.model}}</td>
+          <td >{{car.price}}</td>
+          <td >{{car.color}}</td>
+          <td >{{car.cubic_cent}}</td>
+          <td >{{car.hp}}</td>
+            <td>
+          <button pButton icon="pi pi-pencil" label="Edit"></button>
+          <button pButton icon="pi pi-trash" label="Delete"></button>
+        </td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>
+ 
+
+  <!-- <p-table [value]="cars" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20]"
+  totalRecords="totalRecords" pageLinks="3">
     <ng-template pTemplate="header">
       <tr>
         <th>Imagen</th>
@@ -48,7 +84,7 @@
         </td>
       </tr>
     </ng-template>
-  </p-table>
+  </p-table> -->
        
          <!-- <div class="card m-2"  *ngFor="let car of cars" style="width: 20rem;">
             <img src="{{car.img}}" class="card-img-top pt-4" alt="...">

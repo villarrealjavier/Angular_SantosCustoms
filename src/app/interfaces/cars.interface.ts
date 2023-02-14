@@ -6,6 +6,7 @@ export interface cars {
     color:string
     cubic_cent:number
     name_brand:brand
+    model:string
     sold:boolean
     img:string
     price:number

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { RegisterService } from './register.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router:Router) { }
+  constructor(private fb: FormBuilder, private router:Router, private service:RegisterService) { }
 
   registerForm: FormGroup = this.fb.group({
     nombre:['',[Validators.required, Validators.minLength(3)]],
@@ -42,6 +43,7 @@ export class RegisterComponent implements OnInit {
   }
 
   saveRegister(){
+    
     if(this.registerForm.valid){
       this.registerForm.markAllAsTouched()
       Swal.fire({

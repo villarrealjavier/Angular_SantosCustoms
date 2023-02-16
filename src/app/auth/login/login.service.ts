@@ -21,7 +21,7 @@ export class LoginService {
     return this.http.post<any>(environment.urlApi+"signin",{'username':username,'password':password}, this.httpOptions)
     .pipe(switchMap(resp=>{
       console.log(resp)
-      localStorage.setItem('Authorization',resp)
+      localStorage.setItem('Authorization',resp.token)
       localStorage.setItem('loggin',"true");
       return of(true);
     

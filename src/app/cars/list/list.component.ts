@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../list.service';
-import { cars } from '../../interfaces/cars.interface';
+import { cars } from '../../interfaces/cars.interface copy';
+
 
 @Component({
   selector: 'app-list',

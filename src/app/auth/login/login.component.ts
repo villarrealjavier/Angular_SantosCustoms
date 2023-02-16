@@ -12,8 +12,8 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
   @ViewChild('formLogin') formLogin!: NgForm
   constructor(private router: Router,private service:LoginService) { }
-  username!:string;
-  password!:string;
+  username:string="";
+  password:string="";
   login:boolean=false;
 
   ngOnInit(): void {
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   validateUsername(): boolean{
     this.username = this.formLogin?.controls['username'].value;
+    
     return this.formLogin?.controls['username'].invalid
     && this.formLogin?.controls['username'].touched;
 
@@ -45,16 +46,10 @@ export class LoginComponent implements OnInit {
                 text: '¡Bienvenido a los Santos Customs!',
             });
             this.router.navigate(['/home'])
-          }
-          else {
+          }else {
             this.username=''; 
             this.password='';
-             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: '<a href="">Why do I have this issue?</a>'
-            })
+            
             
           }
         }

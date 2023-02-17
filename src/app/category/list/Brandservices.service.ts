@@ -16,10 +16,10 @@ export class BrandService {
   httpOptions={
     //headers: new HttpHeaders({'Authorization':this.token})
     headers: new HttpHeaders({'Access-Control-Allow-Origin':'*',
-  'Authorization':this.token,"Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With, Accept",
-  "Access-Control-Allow-Credentials": "true",
-  "Access-Control-Max-Age":"3600"
+    'Authorization':this.token,"Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With, Accept",
+    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Max-Age":"3600"
 })
   }
   

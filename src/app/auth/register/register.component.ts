@@ -11,9 +11,11 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit {
 
+  
   constructor(private fb: FormBuilder, private router:Router, private service:RegisterService) { }
 
   registerForm: FormGroup = this.fb.group({
+    username:['',[Validators.required, Validators.minLength(3)]],
     nombre:['',[Validators.required, Validators.minLength(3)]],
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,Validators.minLength(8)]],
@@ -43,22 +45,33 @@ export class RegisterComponent implements OnInit {
   }
 
   saveRegister(){
-    
-    if(this.registerForm.valid){
-      this.registerForm.markAllAsTouched()
-      Swal.fire({
-        icon: 'success',
-        title: 'Registro completado',
-        text: '¡Bienvenido a los Santos Customs!',
-      });
-      this.router.navigate(['/'])
-    }else{
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Registro incorrecto, algo ha salido mal...',
-      });
-    }
+    const username:string =this.registerForm.get('username')?.value
+    const password:string = this.registerForm.get('password')?.value
+    const name:string = this.registerForm.get('nombre')?.value
+    const email:string =this.registerForm.get('email')?.value
+    console.log(username,password,name,email)
+    this.service.register(username,password,email,name
+    ).subscribe({
+        next: (resp) => {
+          if (resp) {
+            console.log(resp)
+            if(this.registerForm.valid){
+            
+              Swal.fire({
+                icon: 'success',
+                title: 'Revisa el correo electrónico y verifica el correo',
+                text: '¡Bienvenido a los Santos Customs!',
+            });
+            this.router.navigate(['/home'])
+
+          }else {
+            
+            
+            
+          }}}})
+       }
+  
+
   }
 
-}
+

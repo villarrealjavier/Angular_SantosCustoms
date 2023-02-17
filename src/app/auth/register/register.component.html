@@ -9,8 +9,23 @@
   
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registro</p>
   
-                  <form method="POST" (ngSubmit)="saveRegister()" action="#" [formGroup]="registerForm" class="mx-1 mx-md-4">
+                  <form (ngSubmit)="saveRegister()" [formGroup]="registerForm" class="mx-1 mx-md-4">
   
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                          <label class="form-label" for="form3Example1c">Nombre de usuario: </label>
+                        <input type="text" id="username" 
+                        name="username" 
+                        class="form-control" 
+                        formControlName="username" 
+                        />
+                        <span class="form-text text-danger" *ngIf="isValidField('username')">
+                            El nombre debe tener más de 3 caracteres
+                        </span>
+                      </div>
+                    </div>
+
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
@@ -81,7 +96,7 @@
                       <button type="submit" class="btn btn-primary btn-lg" >Registrarse</button>
                       &nbsp;&nbsp;
                     
-                      <button type="submit" class="btn btn-danger btn-lg"  [routerLink]="['/']" routerLinkActive="router-link-active"  >Volver</button>
+                      <button type="button" class="btn btn-danger btn-lg"  [routerLink]="['/']" routerLinkActive="router-link-active"  >Volver</button>
                     </div>
   
                   </form>

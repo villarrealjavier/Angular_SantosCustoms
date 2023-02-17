@@ -62,10 +62,15 @@ export class RegisterComponent implements OnInit {
                 title: 'Revisa el correo electrónico y verifica el correo',
                 text: '¡Bienvenido a los Santos Customs!',
             });
-            this.router.navigate(['/home'])
+            this.router.navigate(['/'])
 
           }else {
-            
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Algo debe haber salido mal!',
+              footer: '<a href="">Why do I have this issue?</a>'
+            })
             
             
           }}}})

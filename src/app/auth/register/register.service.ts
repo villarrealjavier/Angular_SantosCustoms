@@ -20,21 +20,10 @@ export class RegisterService {
     
     return this.http.post<any>(environment.urlApi+"sign_up/submit",{'username':username,'password':password,'email':email,'name':name}, this.httpOptions)
     .pipe(switchMap(resp=>{
-      //  let indice = resp.indexOf(" ");
-      // console.log(resp.token.substring(indice, resp.token.length))
+    
 
       return of(true);
     
-  }),catchError(error=>{
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Algo debe haber salido mal!',
-      footer: '<a href="">Why do I have this issue?</a>'
-    })
-    
-    
-    return of(false)
   }))
   }
   

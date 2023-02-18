@@ -25,7 +25,7 @@ const routes: Routes = [
     
       },
       {
-        path: 'updateCategory',
+        path: 'updateCategory/:id',
         component: UpdateComponent,
     
       },

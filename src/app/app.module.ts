@@ -12,6 +12,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CategoryModule } from './category/category.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
+import { AuthService } from './auth/auth.service';
+import { AuthGuardian } from './auth-guardian.service';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { HomeModule } from './home/home.module';
     HttpClientModule,
     HomeModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardian],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

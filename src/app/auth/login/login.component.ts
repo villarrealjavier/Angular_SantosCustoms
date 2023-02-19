@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { LoginService } from './login.service';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('formLogin') formLogin!: NgForm
-  constructor(private router: Router,private service:LoginService) { }
+  constructor(private router: Router,private service:AuthService) { }
   username:string="";
   password:string="";
   login:boolean=false;

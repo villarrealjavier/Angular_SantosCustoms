@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { RegisterService } from './register.service';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import { RegisterService } from './register.service';
 export class RegisterComponent implements OnInit {
 
   
-  constructor(private fb: FormBuilder, private router:Router, private service:RegisterService) { }
+  constructor(private fb: FormBuilder, private router:Router, private service:AuthService) { }
 
   registerForm: FormGroup = this.fb.group({
     username:['',[Validators.required, Validators.minLength(3)]],

@@ -41,27 +41,36 @@ export class AddComponent implements OnInit {
     this.service.saveBrand(name_brand,country
     ).subscribe({
         next: (resp) => {
-         
-            console.log(resp)
-            if(this.myForm.valid){
-            
-              Swal.fire({
-                icon: 'success',
-                title: 'La marca ha sido añadida con éxito!',
-                text: 'Estas de vuelta en el listado!',
-            });
-            this.router.navigate(['/category/listCategory'])
+         if(resp){
+           if(this.myForm.valid){
+           
+             Swal.fire({
+               icon: 'success',
+               title: 'La marca ha sido añadida con éxito!',
+               text: 'Estas de vuelta en el listado!',
+           });
+           this.router.navigate(['/category/listCategory'])
 
-          }else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Algo debe haber salido mal!',
-              footer: '<a href="">Why do I have this issue?</a>'
-            })
-            
-            
-          }}})
+         }else {
+           Swal.fire({
+             icon: 'error',
+             title: 'Oops...',
+             text: 'Algo debe haber salido mal!',
+             footer: '<a href="">Why do I have this issue?</a>'
+           })
+           
+           
+         }
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No tienes permisos!',
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
+         }}})
+
+         }
        }
   
-}
+

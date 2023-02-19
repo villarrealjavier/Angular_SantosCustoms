@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { brand } from 'src/app/interfaces/brand.interface';
-import { Observable, switchMap, of } from 'rxjs';
+import { Observable, switchMap, of, catchError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -36,13 +37,43 @@ export class BrandService {
 
       return of(true);
     
+  }),catchError(error=>{
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'No tienes permisos!',
+      footer: '<a href="">Why do I have this issue?</a>'
+    })
+    return of(false)
   }))
   }
   getBrandbyId(id:string):Observable<brand>{
     
-    return this.http.get<brand>(environment.urlApi+"brand/"+id)
+    return this.http.get<brand>(environment.urlApi+"brand/"+id, this.httpOptions)
 
   }
+
+  updateBrand(name_brand:string,country:string):Observable<boolean>{
+    
+    
+    
+    return this.http.put<any>(environment.urlApi+"updateBrand/"+name_brand,{'country':country}, this.httpOptions )
+    .pipe(switchMap(resp=>{
+    
+
+      return of(true);
+    
+  }),catchError(error=>{
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'No tienes permisos!',
+      footer: '<a href="">Why do I have this issue?</a>'
+    })
+    return of(false)
+  }))
+  }
+
   
 
   getBrands():Observable<brand[]>{

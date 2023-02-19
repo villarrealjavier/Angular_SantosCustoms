@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuardian } from './auth-guardian.service';
 
 
 
@@ -13,12 +14,12 @@ const routes: Routes = [
 },
   {
     path: 'cars',
-    loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule)
+    loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule),canActivate:[AuthGuardian]
    
   },
   {
     path: 'category',
-    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
+    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),canActivate:[AuthGuardian]
   },
   {
     path: 'home',

@@ -13,10 +13,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
 },
-{
-  path: 'verify/:code',
-  loadChildren: () => import('./verify/verify.module').then(m => m.VerifyModule)
-},
+  
 
   {
     path: 'cars',
@@ -27,6 +24,10 @@ const routes: Routes = [
     path: 'category',
     loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),canActivate:[AuthGuardian]
   },
+  {
+    path: 'verify',
+    loadChildren: () => import('./verify/verify.module').then(m => m.VerifyModule)
+    },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)

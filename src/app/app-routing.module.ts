@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuardian } from './auth-guardian.service';
+import { VerifyModule } from './verify/verify.module';
 
 
 
@@ -12,6 +13,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
 },
+{
+  path: 'verify/:code',
+  loadChildren: () => import('./verify/verify.module').then(m => m.VerifyModule)
+},
+
   {
     path: 'cars',
     loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule),canActivate:[AuthGuardian]

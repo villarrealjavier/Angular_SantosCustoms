@@ -23,6 +23,12 @@ export class BrandService {
     "Access-Control-Max-Age":"3600"
 })*/
   }
+  deleteBrand(name_brand:string):Observable<brand>{
+    
+    return this.http.delete<brand>(environment.urlApi+"brand/"+name_brand, this.httpOptions)
+
+  }
+
   
 
   saveBrand(name_brand:string,country:string):Observable<boolean>{
@@ -31,7 +37,7 @@ export class BrandService {
     console.log(this.httpOptions.headers)
     
     
-    return this.http.post<any>(environment.urlApi+"addBrand",{'name_brand':name_brand,'country':country}, this.httpOptions )
+    return this.http.post<any>(environment.urlApi+"brand",{'name_brand':name_brand,'country':country}, this.httpOptions )
     .pipe(switchMap(resp=>{
     
 
@@ -54,13 +60,9 @@ export class BrandService {
   }
 
   updateBrand(name_brand:string,country:string):Observable<boolean>{
-    
-    
-    
-    return this.http.put<any>(environment.urlApi+"updateBrand/"+name_brand,{'country':country}, this.httpOptions )
+    return this.http.put<any>(environment.urlApi+"brand/"+name_brand,{'country':country}, this.httpOptions )
     .pipe(switchMap(resp=>{
     
-
       return of(true);
     
   }),catchError(error=>{
@@ -77,9 +79,7 @@ export class BrandService {
   
 
   getBrands():Observable<brand[]>{
-    
     return this.http.get<brand[]>(environment.urlApi+"brand")
-
   }
 
 

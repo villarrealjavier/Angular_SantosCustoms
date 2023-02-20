@@ -15,7 +15,7 @@ const routes: Routes = [
     
       },
       {
-        path: 'deleteCategory',
+        path: 'deleteCategory/:id',
         component: DeleteComponent,
     
       },

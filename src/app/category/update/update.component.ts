@@ -37,7 +37,7 @@ export class UpdateComponent implements OnInit {
     this.service.updateBrand(this.myForm.controls['name_brand'].value,this.myForm.controls['country'].value).subscribe({
       next: (resp) => {
        
-          console.log(resp)
+          
           if(resp){
           
             Swal.fire({

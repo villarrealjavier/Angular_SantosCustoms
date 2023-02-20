@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
     const name_brand:string =this.myForm.get('name_brand')?.value
     const country:string = this.myForm.get('country')?.value
     
-    console.log(name_brand,country)
+  
     this.service.saveBrand(name_brand,country
     ).subscribe({
         next: (resp) => {

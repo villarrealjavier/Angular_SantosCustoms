@@ -14,12 +14,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardian } from './auth-guardian.service';
+import { VerifyComponent } from './verify/verify.component';
+import { VerifyModule } from './verify/verify.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { AuthGuardian } from './auth-guardian.service';
     CarsModule,
     CategoryModule,
     HttpClientModule,
-    HomeModule
+    HomeModule,
+    VerifyModule
   ],
   providers: [AuthService, AuthGuardian],
   

@@ -20,6 +20,7 @@ export class DeleteComponent implements OnInit {
     this.service.getBrandbyId(this.name_brand).subscribe({
       next: (resp) => {
         this.country=resp.country
+        
       }
     })
   }

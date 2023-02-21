@@ -17,7 +17,7 @@
 
   <div class="row  d-flex justify-content-center w-100">
     
-    <p-table *ngIf="cars" [value]="cars"   [paginator]="true" 
+    <p-table *ngIf="cars" [value]="cars"  [paginator]="true" 
               [rows]="10" [showCurrentPageReport]="true"
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
       <ng-template pTemplate="header">

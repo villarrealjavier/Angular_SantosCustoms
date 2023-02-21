@@ -15,6 +15,7 @@ import { HomeModule } from './home/home.module';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardian } from './auth-guardian.service';
 import { VerifyModule } from './verify/verify.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -34,7 +35,9 @@ import { VerifyModule } from './verify/verify.module';
     CategoryModule,
     HttpClientModule,
     HomeModule,
-    VerifyModule
+    VerifyModule,
+    BrowserAnimationsModule
+
  
   ],
   providers: [AuthService, AuthGuardian],

@@ -5,11 +5,11 @@
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-xs-12">
         <h1 class="m-4">Listado de marcas:</h1>
     </div>
     
-    <div class="col-12 col-md-6 d-flex flex-row-reverse">
+    <div class="col-12 col-md-6 col-xs-12 d-flex flex-row-reverse">
         <button type="submit" name="addCategory" class="m-4 btn btn-primary" [routerLink]="['/category/addCategory']">Add Category</button>
 
     </div>
@@ -18,11 +18,23 @@
     <div class="card m-2" *ngFor="let cat of marcas" style="width: 18rem;">
         <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
         <div class="card-body">
-          <h5 class="card-title">{{cat.name_brand}}</h5>
-          <p class="card-text">{{cat.country}}</p>
-          <a href="#" class="btn btn-primary">Ir a los coches</a>
-          <a href="#" [routerLink]="['/category/updateCategory',cat.name_brand]" class="btn btn-primary">Actualizar marca</a>
-          <a  [routerLink]="['/category/deleteCategory',cat.name_brand]" class="btn btn-primary">Eliminar marca</a>
+          <h5 align="center" class="card-title">{{cat.name_brand}}</h5>
+          <p align="center"class="card-text">{{cat.country}}</p>
+          <div class="row mb-4">
+            <a href="#" class="btn btn-primary">Ir a los coches</a>
+
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <a href="#" [routerLink]="['/category/updateCategory',cat.name_brand]" class="btn btn-warning">Actualizar marca</a>
+            </div>
+            <div class="col-6">
+              <a  [routerLink]="['/category/deleteCategory',cat.name_brand]" class="btn btn-danger">Eliminar marca</a>
+  
+            </div>
+
+          </div>
+
 
         </div>
       </div>

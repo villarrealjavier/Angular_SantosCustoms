@@ -10,12 +10,14 @@ import { CarsModule } from './cars/cars.module';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CategoryModule } from './category/category.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardian } from './auth-guardian.service';
 import { VerifyModule } from './verify/verify.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RolGuardGuard } from './rol-guard.guard';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 
 
@@ -40,7 +42,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
  
   ],
-  providers: [AuthService, AuthGuardian],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  },AuthService, AuthGuardian, RolGuardGuard],
   
   bootstrap: [AppComponent]
 })

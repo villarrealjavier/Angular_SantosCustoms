@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
+import { user } from '../interfaces/user.interface';
+
 
 
 @Injectable({
@@ -23,8 +26,9 @@ export class AuthService {
     .pipe(switchMap(resp=>{
       //  let indice = resp.indexOf(" ");
       // console.log(resp.token.substring(indice, resp.token.length))
-
       localStorage.setItem('Authorization',resp.token)
+      const decodedToken :user = jwt_decode(resp.token);
+      localStorage.setItem("role", decodedToken.role)
       localStorage.setItem('loggin',"true");
       return of(true);
     
@@ -56,5 +60,18 @@ export class AuthService {
     isAuthenticated() {
       return localStorage.getItem('loggin') === 'true'
     }
+
+    isUserAdmin(jwt: string): boolean {
+      // Decodifica el token JWT
+      const decodedToken :user = jwt_decode(jwt);
+    
+      // Verifica si el rol del usuario es 'administrador'
+      if (decodedToken.role === 'ADMIN') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
 
 }

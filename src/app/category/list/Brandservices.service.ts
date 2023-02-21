@@ -14,18 +14,18 @@ export class BrandService {
   token:any=localStorage.getItem('Authorization');;
   
 
-  httpOptions={
+  /*httpOptions={
     headers: new HttpHeaders({'Authorization':this.token})
-    /*headers: new HttpHeaders({'Access-Control-Allow-Origin':'*',
+    headers: new HttpHeaders({'Access-Control-Allow-Origin':'*',
     'Authorization':this.token,"Access-Control-Allow-Methods": "OPTIONS,POST,GET",
     "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With, Accept",
     "Access-Control-Allow-Credentials": "true",
     "Access-Control-Max-Age":"3600"
-})*/
-  }
+})
+  }*/
   deleteBrand(name_brand:string):Observable<brand>{
     
-    return this.http.delete<brand>(environment.urlApi+"brand/"+name_brand, this.httpOptions)
+    return this.http.delete<brand>(environment.urlApi+"brand/"+name_brand)
 
   }
 
@@ -34,10 +34,10 @@ export class BrandService {
   saveBrand(name_brand:string,country:string):Observable<boolean>{
     console.log(this.token)
     console.log(name_brand,country)
-    console.log(this.httpOptions.headers)
+   
     
     
-    return this.http.post<any>(environment.urlApi+"brand",{'name_brand':name_brand,'country':country}, this.httpOptions )
+    return this.http.post<any>(environment.urlApi+"brand",{'name_brand':name_brand,'country':country})
     .pipe(switchMap(resp=>{
     
 
@@ -55,12 +55,12 @@ export class BrandService {
   }
   getBrandbyId(id:string):Observable<brand>{
     
-    return this.http.get<brand>(environment.urlApi+"brand/"+id, this.httpOptions)
+    return this.http.get<brand>(environment.urlApi+"brand/"+id)
 
   }
 
   updateBrand(name_brand:string,country:string):Observable<boolean>{
-    return this.http.put<any>(environment.urlApi+"brand/"+name_brand,{'country':country}, this.httpOptions )
+    return this.http.put<any>(environment.urlApi+"brand/"+name_brand,{'country':country})
     .pipe(switchMap(resp=>{
     
       return of(true);

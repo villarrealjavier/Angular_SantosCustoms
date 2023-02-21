@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { RolGuardGuard } from '../../rol-guard.guard';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +12,17 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.jwt = localStorage.getItem('Authorization');
+
+    if(this.jwt){
+      this.admin = this.authService.isUserAdmin(this.jwt);
+    }
   }
+  admin!:boolean
+  jwt: string | null = null;
 
   logout(){
     localStorage.removeItem("Authorization");
@@ -20,4 +30,5 @@ export class NavbarComponent implements OnInit {
     
 
   }
+  
 }

@@ -23,5 +23,7 @@ export class ListComponent implements OnInit {
     this.totalRecords=this.cars.length
 
   }
+  
+
 
 }

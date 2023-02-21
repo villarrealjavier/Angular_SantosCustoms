@@ -22,13 +22,13 @@
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
       <ng-template pTemplate="header">
           <tr>
-            <th>Imagen</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Precio</th>
-            <th>Color</th>
-            <th>Centimetros Cúbicos</th>
-            <th>Potencia</th>
+            <th pSortableColumn="img">Imagen</th>
+            <th pSortableColumn="brand">Marca <p-sortIcon field="brand"></p-sortIcon></th>
+            <th pSortableColumn="model">Modelo <p-sortIcon field="model"></p-sortIcon></th>
+            <th pSortableColumn="price">Precio</th>
+            <th pSortableColumn="color">Color</th>
+            <th pSortableColumn="cubic_cent">Centimetros Cúbicos</th>
+            <th pSortableColumn="hp">Potencia</th>
             <th>Administrador</th>
           </tr>
       </ng-template>

@@ -38,7 +38,8 @@ export class UpdateComponent {
   myForm: FormGroup = this.fb.group({
     name:['',[Validators.required, Validators.minLength(3)]],
     email:['',[Validators.required, Validators.minLength(3),Validators.email]],
-    password:['',[Validators.required, Validators.minLength(6),Validators.maxLength(15)]],
+    repeatpassword:['',[Validators.required,Validators.minLength(6),Validators.maxLength(15),this.match('password')]],
+    password:['',[Validators.required, Validators.minLength(6),Validators.maxLength(15),]],
     file:['',[Validators.required]],
     fileSource:['',[Validators.required]]
 
@@ -84,9 +85,11 @@ export class UpdateComponent {
     console.log(this.json)
     this.service.updateUser(this.json,this.myForm.get('fileSource')?.value,this.user.username).subscribe({
       next:(resp=>{
-
+        window.location.reload()
       })
     })
+    this.myForm.reset()
+    
   }
   
 

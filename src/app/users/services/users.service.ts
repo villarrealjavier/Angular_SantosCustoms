@@ -23,8 +23,8 @@ export class UsersService {
     const formData = new FormData();
     formData.append('file', file, file.name);
     formData.append('user', new Blob([JSON.stringify(json)], {type: 'application/json'}));
-  console.log(formData)
-    return this.http.put<any>(`${environment.urlApi}/users/${username}`,formData)
+ 
+    return this.http.put<any>(`${environment.urlApi}users/${username}`,formData)
   }
 
 }

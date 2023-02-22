@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import jwt_decode from 'jwt-decode';
 import { user } from '../interfaces/user.interface';
 import { token } from '../interfaces/token.interface';
+import { UsersService } from '../users/services/users.service';
 
 
 
@@ -18,7 +19,7 @@ export class AuthService {
     headers: new HttpHeaders({'Content-Type':'application/json'})
   }
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private service:UsersService) { }
 
   login(username:string,password:string):Observable<boolean>{
     console.log(username,password)
@@ -82,6 +83,24 @@ export class AuthService {
         const username=decodedToken.sub
        
         return username;
+      }
+
+     
+    }
+    returnUserCompleted(jwt: string):any{
+      const decodedToken :token = jwt_decode(jwt);
+      let user:user | null = null
+      
+      if(decodedToken){
+        
+        const username=decodedToken.sub
+        this.service.getUser(username).subscribe({
+          next:(resp=>{
+            user=resp
+          })
+        })
+       
+        return user;
       }
 
      

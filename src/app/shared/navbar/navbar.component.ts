@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { RolGuardGuard } from '../../rol-guard.guard';
+import { user } from '../../interfaces/user.interface';
 
 
 @Component({
@@ -20,11 +21,14 @@ export class NavbarComponent implements OnInit {
     if(this.jwt){
       this.admin = this.authService.isUserAdmin(this.jwt);
       this.username=this.authService.returnUser(this.jwt)
+      this.user=this.authService.returnUserCompleted(this.jwt)
+      console.log(this.user)
     }
   }
   username:string | null = null
   admin!:boolean
   jwt: string | null = null;
+  user!:user 
 
   logout(){
     localStorage.removeItem("Authorization");

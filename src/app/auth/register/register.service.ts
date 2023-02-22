@@ -18,7 +18,7 @@ export class RegisterService {
   register(username:string,password:string,email:string,name:string):Observable<boolean>{
     console.log(username,password)
     
-    return this.http.post<any>(environment.urlApi+"sign_up/submit",{'username':username,'password':password,'email':email,'name':name}, this.httpOptions)
+    return this.http.post<any>(environment.urlApi+"sign_up/submit",{'username':username,'password':password,'email':email,'name':name})
     .pipe(switchMap(resp=>{
     
 

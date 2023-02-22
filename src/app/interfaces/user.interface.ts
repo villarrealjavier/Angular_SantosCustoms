@@ -1,11 +1,12 @@
 export interface user{
 
-    username: String,
-    name: String,
-    password:String,
+    username: string,
+    name: string,
+    password:string,
     enabled: Boolean,
-    email: String,
+    email: string,
     verification_code:String,
     role:string,
+    img:string
   
 }

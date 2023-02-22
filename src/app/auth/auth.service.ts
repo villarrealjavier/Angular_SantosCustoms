@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import jwt_decode from 'jwt-decode';
 import { user } from '../interfaces/user.interface';
+import { token } from '../interfaces/token.interface';
 
 
 
@@ -71,6 +72,19 @@ export class AuthService {
       } else {
         return false;
       }
+    }
+
+    returnUser(jwt: string):any{
+      const decodedToken :token = jwt_decode(jwt);
+      
+      
+      if(decodedToken){
+        const username=decodedToken.sub
+       
+        return username;
+      }
+
+     
     }
 
 

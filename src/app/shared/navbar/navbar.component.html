@@ -16,6 +16,9 @@
           <li class="nav-item">
             <a [routerLink]="['/category/listCategory']" routerLinkActive="active" class=" text-white nav-link" *ngIf="admin">Marcas</a>
           </li>
+          <li class="nav-item">
+            <a [routerLink]="['/users/updateUsers']" routerLinkActive="active" class=" text-white nav-link" *ngIf="admin">Users</a>
+          </li>
         
           
         </ul>
@@ -31,7 +34,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li><a class=" dropdown-item" [routerLink]="['/']" (click)="logout()"> Cerrar Sesion</a></li>
-              <li><a class=" dropdown-item" href="#">Editar perfil</a></li>
+              <li><a class=" dropdown-item" [routerLink]="['/users/updateUsers',username]" href="#">Editar perfil</a></li>
               
             </ul>
           </li>

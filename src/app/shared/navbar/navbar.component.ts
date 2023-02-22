@@ -19,8 +19,10 @@ export class NavbarComponent implements OnInit {
 
     if(this.jwt){
       this.admin = this.authService.isUserAdmin(this.jwt);
+      this.username=this.authService.returnUser(this.jwt)
     }
   }
+  username:string | null = null
   admin!:boolean
   jwt: string | null = null;
 

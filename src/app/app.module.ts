@@ -18,6 +18,7 @@ import { VerifyModule } from './verify/verify.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RolGuardGuard } from './rol-guard.guard';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { UsersModule } from './users/users.module';
 
 
 
@@ -38,7 +39,8 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     HttpClientModule,
     HomeModule,
     VerifyModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    UsersModule
 
  
   ],

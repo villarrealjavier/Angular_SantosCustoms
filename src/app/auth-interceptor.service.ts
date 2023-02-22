@@ -23,6 +23,7 @@ export class AuthInterceptorService implements HttpInterceptor{
       request = req.clone({
         setHeaders: {
           Authorization:  jwt 
+
         }
       });
     }

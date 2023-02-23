@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { RolGuardGuard } from '../../rol-guard.guard';
 import { user } from '../../interfaces/user.interface';
+import { UsersService } from '../../users/services/users.service';
 
 
 @Component({
@@ -13,7 +14,12 @@ import { user } from '../../interfaces/user.interface';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router:Router,private authService: AuthService) { }
+  constructor(private router:Router,private authService: AuthService,private userService:UsersService) { }
+
+  username!:string
+  admin!:boolean
+  jwt: string | null = null;
+  user!:user 
 
   ngOnInit(): void {
     this.jwt = localStorage.getItem('Authorization');
@@ -21,14 +27,16 @@ export class NavbarComponent implements OnInit {
     if(this.jwt){
       this.admin = this.authService.isUserAdmin(this.jwt);
       this.username=this.authService.returnUser(this.jwt)
-      this.user=this.authService.returnUserCompleted(this.jwt)
-      console.log(this.user)
+      this.userService.getUser(this.username).subscribe({
+        next:(resp=>{
+          this.user=resp
+          console.log(this.user)
+
+        })
+      })
     }
   }
-  username:string | null = null
-  admin!:boolean
-  jwt: string | null = null;
-  user!:user 
+ 
 
   logout(){
     localStorage.removeItem("Authorization");

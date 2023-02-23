@@ -18,6 +18,7 @@ export class AuthService {
   httpOptions={
     headers: new HttpHeaders({'Content-Type':'application/json'})
   }
+  user!:user
 
   constructor(private http:HttpClient,private service:UsersService) { }
 
@@ -87,24 +88,26 @@ export class AuthService {
 
      
     }
-    returnUserCompleted(jwt: string):any{
-      const decodedToken :token = jwt_decode(jwt);
-      let user:user | null = null
+    // returnUserCompleted(jwt: string):any{
+    //   const decodedToken :token = jwt_decode(jwt);
       
-      if(decodedToken){
+      
+      
+    //   if(decodedToken){
         
-        const username=decodedToken.sub
-        this.service.getUser(username).subscribe({
-          next:(resp=>{
-            user=resp
-          })
-        })
+    //     const username=decodedToken.sub
+    //     this.service.getUser(username).subscribe({
+    //       next:(resp=>{
+    //         this.user=resp
+            
+    //       })
+    //     })
+    //     return this.user;
        
-        return user;
-      }
+    //   }
 
      
-    }
+    // }
 
 
 }

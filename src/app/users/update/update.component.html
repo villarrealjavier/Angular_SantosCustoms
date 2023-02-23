@@ -35,7 +35,7 @@
                   <p class="mb-0">Nombre</p>
                 </div>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" name="name" id="name" formControlName="name" >                
+                    <input class="form-control" type="text" name="name" id="name" formControlName="name" placeholder="{{user.name}}" >                
                     <span class="form-text text-danger" *ngIf="isValidField('name')">
                       El nombre debe tener más de 3 caracteres
                   </span>
@@ -47,7 +47,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                    <input class="form-control" type="email" name="email" id="email" formControlName="email" value="{{user.email}}">
+                    <input class="form-control" type="email" name="email" id="email" formControlName="email" placeholder="{{user.email}}">
                     <span class="form-text text-danger" *ngIf="isValidField('email')">
                       El nombre debe tener más de 3 caracteres
                   </span>

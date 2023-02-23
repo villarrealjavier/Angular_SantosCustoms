@@ -46,7 +46,7 @@ export class UpdateComponent {
   })
 
   onFileChange(event:any) {
-    console.log(event);
+   
     
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -82,7 +82,7 @@ export class UpdateComponent {
     this.json.email= this.myForm.get('email')?.value
     this.json.name=this.myForm.get('name')?.value
 
-    console.log(this.json)
+   
     this.service.updateUser(this.json,this.myForm.get('fileSource')?.value,this.user.username).subscribe({
       next:(resp=>{
         window.location.reload()

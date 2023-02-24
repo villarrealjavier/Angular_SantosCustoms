@@ -1,1 +1,55 @@
-<p>list works!</p>
+<app-navbar></app-navbar>
+<div class="container-fluid">
+
+<div class="col">
+
+
+  <div class="row">
+      <div class="col-md-6">
+          <h1 class="m-4">Cars List</h1>
+      </div>
+      
+      
+  </div>
+
+  <div class="row  d-flex justify-content-center w-100">
+    
+    <p-table *ngIf="listUsers" [value]="listUsers"  [paginator]="true" 
+              [rows]="10" [showCurrentPageReport]="true"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
+      <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="img">Avatar</th>
+            <th pSortableColumn="username">Username </th>
+            <th pSortableColumn="email">Email </th>
+            <th pSortableColumn="name">Nombre</th>
+         
+          
+            <th>Administrador</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+          <tr>
+            <td ><img src="{{user.img}}" img align="center" width="40px" height="40px"></td>
+            <td >{{user.username}}</td>
+            <td >{{user.email}}</td>
+            <td >{{user.name}}</td>
+          
+            <td *ngIf="user.username!=usernameActual">
+            <button pButton icon="pi pi-trash" [routerLink]="['/users/deleteUsers', user.username]" routerLinkActive="router-link-active"  label="Borrar"></button>
+          </td>
+          </tr>
+      </ng-template>
+  </p-table>
+  </div>
+    
+
+</div>
+
+
+<hr class="hr" />
+<div class="col separacion">
+<app-footer></app-footer>
+</div>
+
+    </div>

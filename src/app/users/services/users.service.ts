@@ -26,5 +26,8 @@ export class UsersService {
  
     return this.http.put<any>(`${environment.urlApi}users/${username}`,formData)
   }
+  deleteUsers(username:string):Observable<user[]>{
+    return this.http.delete<any>(`${environment.urlApi}users/${username}`)
+  }
 
 }

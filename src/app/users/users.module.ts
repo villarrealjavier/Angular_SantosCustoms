@@ -6,6 +6,9 @@ import { DeleteComponent } from './delete/delete.component';
 import { usersRoutingModule } from './users-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -21,7 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     usersRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule,
+    ButtonModule,
+    PaginatorModule,
   ],exports:[
     ListComponent,
     UpdateComponent,

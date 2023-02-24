@@ -30,8 +30,10 @@ export class AuthService {
       //  let indice = resp.indexOf(" ");
       // console.log(resp.token.substring(indice, resp.token.length))
       localStorage.setItem('Authorization',resp.token)
-      const decodedToken :user = jwt_decode(resp.token);
+      
+      const decodedToken :token = jwt_decode(resp.token);
       localStorage.setItem("role", decodedToken.role)
+      localStorage.setItem("username", decodedToken.sub)
       localStorage.setItem('loggin',"true");
       return of(true);
     

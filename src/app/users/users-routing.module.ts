@@ -10,7 +10,7 @@ const routes: Routes = [
     children:[
       
       {
-        path: 'deleteUsers',
+        path: 'deleteUsers/:id',
         component: DeleteComponent,
     
       },

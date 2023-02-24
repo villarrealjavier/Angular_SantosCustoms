@@ -1,1 +1,83 @@
-<p>delete works!</p>
+<app-navbar></app-navbar>
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-4">
+          <h3>PERFIL</h3>
+        </div>
+        <div class="col-8">
+          <h3>EDITAR INFORMACION</h3>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center" *ngIf="user">
+              <img src="{{user.img}}" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3" name="name">{{user.name}}</h5>
+              <p class="text-muted mb-1">Comprador de Vehículos</p>
+              
+            </div>
+          </div>
+         
+        </div>
+        <div class="col-lg-8" *ngIf="user">
+            
+          <div class="card mb-4">
+              <form action="POST" (ngSubmit)="deleteUser()" enctype="multipart/form-data">
+
+             
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Nombre</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" name="name" id="name"  value="{{user.name}}" >                
+                   
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="email" name="email" id="email" value="{{user.email}}">
+                    
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Contraseña</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="password" name="password"  id="password" placeholder="********">
+                    
+                </div>
+                
+              </div>
+             
+              <hr>
+              
+              <div class="row">
+                
+               <div align="right">
+                 <button class="btn btn-primary" type="submit">Borrar</button>&nbsp;&nbsp;
+
+                 <button class="btn btn-danger" [routerLink]="['/home']" routerLinkActive="router-link-active"  type="button">Volver</button>
+               </div>
+
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+  

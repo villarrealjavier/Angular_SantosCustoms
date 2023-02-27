@@ -9,6 +9,8 @@ import { SharedModule } from '../shared/shared.module';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { CarsForBrandComponent } from './cars-for-brand/cars-for-brand.component';
 
 
 
@@ -17,7 +19,8 @@ import { PaginatorModule } from 'primeng/paginator';
     DeleteComponent,
     AddComponent,
     ListComponent,
-    UpdateComponent
+    UpdateComponent,
+    CarsForBrandComponent
   ],
   imports: [
     CommonModule,
@@ -26,13 +29,15 @@ import { PaginatorModule } from 'primeng/paginator';
     TableModule,
     ButtonModule,
     PaginatorModule,
+    InputTextModule
 
   ],exports:[
     DeleteComponent,
     AddComponent,
     ListComponent,
     UpdateComponent,
-    CarsRoutingModule
+    CarsRoutingModule,
+    CarsForBrandComponent
   ]
 })
 export class CarsModule { }

@@ -21,6 +21,11 @@ const routes: Routes = [
    
   },
   {
+    path: 'exemplary',
+    loadChildren: () => import('./exemplary/exemplary.module').then(m => m.ExemplaryModule),canActivate:[AuthGuardian]
+   
+  },
+  {
     path: 'category',
     loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),canActivate:[AuthGuardian]
   },

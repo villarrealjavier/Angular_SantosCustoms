@@ -11,13 +11,16 @@
             <a [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="text-white nav-link active" aria-current="page">Inicio</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/cars/listCar']" routerLinkActive="active" class=" text-white nav-link">Cars</a>
+            <a [routerLink]="['/cars/listCar']" routerLinkActive="active" class=" text-white nav-link">Coches</a>
           </li>
           <li class="nav-item">
             <a [routerLink]="['/category/listCategory']" routerLinkActive="active" class=" text-white nav-link" *ngIf="admin">Marcas</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/users/listUsers']" routerLinkActive="active" class=" text-white nav-link" *ngIf="admin">Users</a>
+            <a [routerLink]="['/users/listUsers']" routerLinkActive="active" class=" text-white nav-link" *ngIf="admin">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/exemplary/listExemplary']" routerLinkActive="active" class=" text-white nav-link" *ngIf="admin">Modelos</a>
           </li>
         
           

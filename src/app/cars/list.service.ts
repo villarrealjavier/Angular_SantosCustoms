@@ -17,4 +17,9 @@ export class ListService {
     return this.http.get<cars[]>(environment.urlApi+"Cars")
 
   }
+  getCarsbyBrand(brand:string):Observable<cars[]>{
+    
+    return this.http.get<cars[]>(environment.urlApi+"CarsbyBrand/"+brand)
+
+  }
 }

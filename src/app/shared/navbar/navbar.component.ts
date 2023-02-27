@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
       this.userService.getUser(this.username).subscribe({
         next:(resp=>{
           this.user=resp
-          console.log(this.user)
+         
 
         })
       })

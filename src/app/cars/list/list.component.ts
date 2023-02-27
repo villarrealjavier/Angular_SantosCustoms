@@ -13,15 +13,30 @@ export class ListComponent implements OnInit {
   constructor(private service:ListService) { }
 
   cars:cars[]=[]
+  carsRespaldo:cars[]=[]
   totalRecords!:number;
 
   ngOnInit(): void {
     this.service.getCars().subscribe({
-      next: (resp)=> this.cars=resp
+      next: (resp=>{
+        this.cars=resp
+        this.carsRespaldo=resp
+      }) 
     })
 
     this.totalRecords=this.cars.length
 
+  }
+  filtroNombre!: string;
+
+  filtrar() {
+   
+    if(this.filtroNombre.trim().length!=0){
+      this.cars = this.cars.filter(dato => dato.name_exemplary.name_exemplary.toLowerCase().includes(this.filtroNombre.toLowerCase()));
+      
+    }else{
+      this.cars=this.carsRespaldo
+    }
   }
   
 

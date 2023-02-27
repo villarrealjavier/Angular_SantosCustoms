@@ -16,11 +16,23 @@
   </div>
 
   <div class="row  d-flex justify-content-center w-100">
-    
+    <div class="row">
+      <div class="col-6">
+      
+      </div>
+      <div align="right"class="col-6 mb-4">
+        <input  pInputText [(ngModel)]="filtroNombre" placeholder="Busca un modelo..." (keydown.enter)="filtrar()">
+        <button  pButton (click)="filtrar()">Filtrar</button>
+      </div>
+      
+
+    </div>
     <p-table *ngIf="cars" [value]="cars"  [paginator]="true" 
               [rows]="10" [showCurrentPageReport]="true"
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
+             
       <ng-template pTemplate="header">
+       
           <tr>
             <th pSortableColumn="img">Imagen</th>
             <th pSortableColumn="brand">Marca <p-sortIcon field="brand"></p-sortIcon></th>

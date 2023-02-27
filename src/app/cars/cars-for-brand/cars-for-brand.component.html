@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+
+  <div class="col">
+
+
+<div class="row " *ngIf="carsbyBrand.length!=0">
+    <div class="col-md-6 col-xs-12">
+        <h1 class="m-4">Listado de coches por marca:</h1>
+    </div>
+    
+    
+</div>
+<div class="row d-flex justify-content-center w-100" *ngIf="carsbyBrand.length!=0">
+    <div class="card m-2" *ngFor="let car of carsbyBrand" style="width: 18rem;">
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <div class="card-body">
+            <img align="center" src="{{car.img}}" alt="..." class="centrar mb-4" width="230px" height="170px" >
+          <h5 align="center" class="card-title">{{car.name_exemplary.name_brand.name_brand}}</h5>
+          <p align="center"class="card-text">{{car.name_exemplary.name_exemplary}}</p>
+          <p align="center">Precio: {{car.price}}</p>
+         
+    
+
+        </div>
+      </div>
+
+</div>
+
+<div class="row " *ngIf="carsbyBrand.length==0">
+    <div class="col-md-6 col-xs-12">
+        <h3 class="m-4">No tenemos ejemplares de esta marca, Gracias</h3>
+        <button type="button" class="ms-4 btn btn-danger" [routerLink]="['/category/listCategory']">Volver al listado</button>
+    </div>
+    
+    
+</div>
+
+<hr class="hr" />
+<app-footer></app-footer>
+  </div>
+
+
+
+
+

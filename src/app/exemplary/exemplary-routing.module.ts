@@ -1,38 +1,37 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate, CanActivateChild } from '@angular/router';
 import { AddComponent } from './add/add.component';
 import { DeleteComponent } from './delete/delete.component';
 import { ListComponent } from './list/list.component';
 import { UpdateComponent } from './update/update.component';
-import { CarsForBrandComponent } from './cars-for-brand/cars-for-brand.component';
+import { RolGuardGuard } from '../rol-guard.guard';
 
 const routes: Routes = [
   {
     path: '',
     children:[
       {
-        path: 'addCar',
+        path: 'addExemplary',
         component: AddComponent,
+        canActivate:[RolGuardGuard]
     
       },
       {
-        path: 'deleteCar',
+        path: 'deleteExemplary/:id',
         component: DeleteComponent,
+        canActivate:[RolGuardGuard]
     
       },
       {
-        path: 'listCar',
+        path: 'listExemplary',
         component: ListComponent,
+        canActivate:[RolGuardGuard]
     
       },
       {
-        path: 'updateCar',
+        path: 'updateExemplary/:id',
         component: UpdateComponent,
-    
-      },
-      {
-        path: 'carsByBrand/:id',
-        component: CarsForBrandComponent,
+        canActivate:[RolGuardGuard]
     
       },
     ]
@@ -46,4 +45,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CarsRoutingModule { }
+export class ExemplarRoutingModule { }

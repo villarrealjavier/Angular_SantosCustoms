@@ -12,7 +12,7 @@ import { ExemplaryService } from '../services/exemplary.service';
 export class ListComponent {
 
   listExemplary:exemplary[]=[]
-
+  role:string | null=localStorage.getItem("role") 
   constructor(private route:ActivatedRoute,private service:ExemplaryService ){
 
   }

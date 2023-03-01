@@ -1,1 +1,179 @@
-<p>add works!</p>
+<app-navbar></app-navbar>
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <h3>Añadir un coche</h3>
+      
+      <div class="row">
+        
+        <div class="col-lg-12" >
+            
+          <div class="card mb-4">
+              <form action="POST" (ngSubmit)="addCar()" [formGroup]="addCarForm" enctype="multipart/form-data">
+
+             
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Numero de bastidor</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" name="num_bastidor" id="num_bastidor" formControlName="num_bastidor" placeholder="Introduce un numero de bastidor">                
+                    <span class="form-text text-danger" *ngIf="isValidField('num_bastidor')">
+                      El numero de bastidor debe tener más de 3 caracteres
+                  </span>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Potencia del vehículo:</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" name="hp" id="hp" formControlName="hp" placeholder="Introduce la potencia">
+                    <span class="form-text text-danger" *ngIf="isValidField('hp')">
+                      La potencia debe ser mayor que 50
+                  </span>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Color del vehículo:</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" name="color" formControlName="color" id="color" placeholder="Introduce un color">
+                    <span class="form-text text-danger" *ngIf="isValidField('color')">
+                      El color debe tener más de 3 caracteres
+                  </span>
+                </div>
+                
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Centímetros cúbicos:</p>
+                </div>
+               
+                <div class="col-sm-9">
+                    <input class="form-control" type="number" id="cubic_cent" formControlName="cubic_cent"placeholder="Introduce los centímetros cúbicos">
+                    <span class="form-text text-danger" *ngIf="isValidField('cubic_cent')">
+                      Los centimetros cúbicos deben ser mayor que 1000
+                  </span>
+                 
+                </div>
+                
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Año del vehículo:</p>
+                </div>
+               
+                <div class="col-sm-9">
+                    <input class="form-control" type="number" id="year" formControlName="year" placeholder="Introduce un año">
+                    <span class="form-text text-danger" *ngIf="isValidField('year')">
+                      El año debe ser mayor de 1970 y menor que el actual
+                  </span>
+                 
+                </div>
+                
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Precio del vehículo:</p>
+                </div>
+               
+                <div class="col-sm-9">
+                    <input class="form-control" type="number" id="price" formControlName="price" placeholder="Introduce un precio">
+                    <span class="form-text text-danger" *ngIf="isValidField('price')">
+                      El precio debe ser mayor que 1 y menor que 5.000.000
+                  </span>
+                 
+                </div>
+                
+              </div>
+              <hr>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Vendido</label>
+                <div class="col-sm-9">
+        
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="radio"
+                               value="false"
+                               id="radioMasculino"
+                               formControlName="sold"
+                               >
+                        <label class="form-check-label" for="radioMasculino">
+                          No
+                        </label>
+                    </div>
+        
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="radio"
+                               value="true"
+                               id="radioFemenino"
+                               formControlName="sold"
+                               >
+                        <label class="form-check-label" for="radioFemenino">
+                          Si
+                        </label>
+                    </div>
+                    <span class="form-text text-danger" *ngIf="isValidField('price')">
+                      Debes indicar el estado del vehículo
+                  </span>
+        
+                </div>
+            </div>
+
+              <hr>
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example1c">Modelo: </label>
+                    <select  name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado"  formControlName="name_exemplary"(change)="capturar()">
+                      
+                      <option *ngFor="let exemplary of exemplaries" [value]="exemplary.name_exemplary">
+                          {{exemplary.name_exemplary}}
+                      </option>
+                  </select>
+                  <p [hidden]="opcionSeleccionado == '0'"></p>
+                  
+                   
+                </div>
+                <span class="form-text text-danger" *ngIf="isValidField('price')">
+                  Debes elegir un modelo
+              </span>
+              </div>
+              <hr>
+              
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Imagen de Perfil</p>
+                </div>
+                <div class="col-sm-9">
+                   
+                        <input class="form-control" formControlName="file" type="file" id="formFile" (change)="onFileChange($event)">
+                        <br>
+                </div>
+               <div align="right">
+                 <button class="btn btn-primary" type="submit" [disabled]="addCarForm.invalid" >Actualizar</button>&nbsp;&nbsp;
+
+                 <button class="btn btn-danger" [routerLink]="['/cars/listCar']" routerLinkActive="router-link-active"  type="button">Volver</button>
+               </div>
+
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+  

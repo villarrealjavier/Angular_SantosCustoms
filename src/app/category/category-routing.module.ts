@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path: 'listCategory',
         component: ListComponent,
-        canActivate:[RolGuardGuard]
+        
     
       },
       {

@@ -9,8 +9,8 @@
           <h1 class="m-4">Cars List</h1>
       </div>
       
-      <div class="col-12 col-md-6 d-flex flex-row-reverse">
-          <button type="submit" name="addCategory" class="m-4 btn btn-primary" [routerLink]="['/category/add']">Add Category</button>
+      <div class="col-12 col-md-6 d-flex flex-row-reverse" *ngIf="role=='ADMIN'">
+          <button type="submit" name="addCategory" class="m-4 btn btn-primary"  [routerLink]="['/cars/addCar']">Añadir coche</button>
 
       </div>
   </div>
@@ -41,7 +41,7 @@
             <th pSortableColumn="color">Color</th>
             <th pSortableColumn="cubic_cent">Centimetros Cúbicos</th>
             <th pSortableColumn="hp">Potencia</th>
-            <th>Administrador</th>
+            <th *ngIf="role=='ADMIN'">Administrador</th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-car>
@@ -53,8 +53,8 @@
             <td >{{car.color}}</td>
             <td >{{car.cubic_cent}}</td>
             <td >{{car.hp}}</td>
-              <td>
-            <button pButton icon="pi pi-pencil" label="Editar" ></button>&nbsp;&nbsp;
+              <td *ngIf="role=='ADMIN'">
+            <button  pButton icon="pi pi-pencil" [routerLink]="['/cars/updateCar', car.num_bastidor]" routerLinkActive="router-link-active"  label="Editar" ></button>&nbsp;&nbsp;
             <button pButton icon="pi pi-trash" label="Borrar"></button>
           </td>
           </tr>

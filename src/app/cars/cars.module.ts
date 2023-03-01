@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { CarsForBrandComponent } from './cars-for-brand/cars-for-brand.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -29,7 +30,8 @@ import { CarsForBrandComponent } from './cars-for-brand/cars-for-brand.component
     TableModule,
     ButtonModule,
     PaginatorModule,
-    InputTextModule
+    InputTextModule,
+    ReactiveFormsModule
 
   ],exports:[
     DeleteComponent,

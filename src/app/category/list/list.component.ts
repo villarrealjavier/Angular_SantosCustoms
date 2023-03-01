@@ -10,7 +10,7 @@ import { BrandService } from './Brandservices.service';
 export class ListComponent implements OnInit {
 
   constructor(private service:BrandService) { }
-
+  role:string | null=localStorage.getItem("role") 
   marcas:brand[]=[]
 
   ngOnInit(): void {

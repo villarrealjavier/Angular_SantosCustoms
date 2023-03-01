@@ -5,6 +5,7 @@ import { DeleteComponent } from './delete/delete.component';
 import { ListComponent } from './list/list.component';
 import { UpdateComponent } from './update/update.component';
 import { CarsForBrandComponent } from './cars-for-brand/cars-for-brand.component';
+import { RolGuardGuard } from '../rol-guard.guard';
 
 const routes: Routes = [
   {
@@ -13,11 +14,13 @@ const routes: Routes = [
       {
         path: 'addCar',
         component: AddComponent,
+        canActivate:[RolGuardGuard]
     
       },
       {
         path: 'deleteCar',
         component: DeleteComponent,
+        canActivate:[RolGuardGuard]
     
       },
       {
@@ -26,13 +29,15 @@ const routes: Routes = [
     
       },
       {
-        path: 'updateCar',
+        path: 'updateCar/:id',
         component: UpdateComponent,
+        canActivate:[RolGuardGuard]
     
       },
       {
         path: 'carsByBrand/:id',
         component: CarsForBrandComponent,
+        
     
       },
     ]

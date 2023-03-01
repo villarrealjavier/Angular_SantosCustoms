@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { cars } from '../../interfaces/cars.interface copy';
 import { ActivatedRoute } from '@angular/router';
-import { ListService } from '../list.service';
+import {  CarsService } from '../cars.service';
 
 @Component({
   selector: 'app-cars-for-brand',
@@ -13,7 +13,7 @@ export class CarsForBrandComponent {
 
   carsbyBrand:cars[]=[]
 
-  constructor(private route:ActivatedRoute,private service:ListService){
+  constructor(private route:ActivatedRoute,private service:CarsService){
 
   }
   ngOnInit(){

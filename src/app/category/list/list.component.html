@@ -10,7 +10,7 @@
     </div>
     
     <div class="col-12 col-md-6 col-xs-12 d-flex flex-row-reverse">
-        <button type="submit" name="addCategory" class="m-4 btn btn-primary" [routerLink]="['/category/addCategory']">Añadir Categoria</button>
+        <button type="submit" name="addCategory" class="m-4 btn btn-primary" *ngIf="role=='ADMIN'" [routerLink]="['/category/addCategory']">Añadir Categoria</button>
 
     </div>
 </div>
@@ -24,12 +24,12 @@
             <a href="#" class="btn btn-primary" [routerLink]="['/cars/carsByBrand',cat.name_brand]">Ir a los coches</a>
 
           </div>
-          <div class="row">
+          <div class="row" *ngIf="role=='ADMIN'">
             <div class="col-6">
               <a href="#" [routerLink]="['/category/updateCategory',cat.name_brand]" class="btn btn-warning">Actualizar marca</a>
             </div>
             
-            <div class="col-6">
+            <div class="col-6" *ngIf="role=='ADMIN'">
               <a  [routerLink]="['/category/deleteCategory',cat.name_brand]" class="btn btn-danger">Eliminar marca</a>
   
             </div>

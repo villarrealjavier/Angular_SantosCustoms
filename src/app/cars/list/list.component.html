@@ -22,7 +22,7 @@
       </div>
       <div align="right"class="col-6 mb-4">
         <input  pInputText [(ngModel)]="filtroNombre" placeholder="Busca un modelo..." (keydown.enter)="filtrar()">
-        <button  pButton (click)="filtrar()">Filtrar</button>
+        <button class="ms-2" pButton (click)="filtrar()">Filtrar</button>
       </div>
       
 
@@ -55,7 +55,7 @@
             <td >{{car.hp}}</td>
               <td *ngIf="role=='ADMIN'">
             <button  pButton icon="pi pi-pencil" [routerLink]="['/cars/updateCar', car.num_bastidor]" routerLinkActive="router-link-active"  label="Editar" ></button>&nbsp;&nbsp;
-            <button class="botonRojo" pButton icon="pi pi-trash" [routerLink]="['/cars/deleteCar', car.num_bastidor]" label="Borrar"></button>
+            <button class="botonRojo mt-2" pButton icon="pi pi-trash" [routerLink]="['/cars/deleteCar', car.num_bastidor]" label="Borrar"></button>
           </td>
           </tr>
       </ng-template>

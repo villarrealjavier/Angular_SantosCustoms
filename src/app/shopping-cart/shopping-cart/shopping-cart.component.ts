@@ -9,6 +9,6 @@ import { cars } from '../../interfaces/cars.interface copy';
 })
 export class ShoppingCartComponent {
 
-  shoppingCart:cars[]=[]
   
+
 }

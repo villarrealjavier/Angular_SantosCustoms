@@ -46,7 +46,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-car>
           <tr>
-            <td><img align="center" src="{{car.img}}" alt="..." class="centrar" width="250px" height="170px" ></td>
+            <td><img align="center" src="{{car.img}}" alt="..." class="centrar img-fluid" width="250px" height="170px" ></td>
             <td >{{car.name_exemplary.name_brand.name_brand}}</td>
             <td >{{car.name_exemplary.name_exemplary}}</td>
             <td >{{car.price}}</td>
@@ -55,7 +55,7 @@
             <td >{{car.hp}}</td>
               <td *ngIf="role=='ADMIN'">
             <button  pButton icon="pi pi-pencil" [routerLink]="['/cars/updateCar', car.num_bastidor]" routerLinkActive="router-link-active"  label="Editar" ></button>&nbsp;&nbsp;
-            <button pButton icon="pi pi-trash" [routerLink]="['/cars/deleteCar', car.num_bastidor]" label="Borrar"></button>
+            <button class="botonRojo" pButton icon="pi pi-trash" [routerLink]="['/cars/deleteCar', car.num_bastidor]" label="Borrar"></button>
           </td>
           </tr>
       </ng-template>

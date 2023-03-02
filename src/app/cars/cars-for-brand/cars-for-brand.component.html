@@ -6,6 +6,11 @@
 
 <div class="row " *ngIf="carsbyBrand.length!=0">
     <div class="col-md-6 col-xs-12">
+      <button class="btn btn-danger m-4" [routerLink]="['/category/listCategory']" routerLinkActive="router-link-active" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+      </button>
         <h1 class="m-4">Listado de coches por marca:</h1>
     </div>
     
@@ -15,7 +20,7 @@
     <div class="card m-2" *ngFor="let car of carsbyBrand" style="width: 18rem;">
         <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
         <div class="card-body">
-            <img align="center" src="{{car.img}}" alt="..." class="centrar mb-4" width="230px" height="170px" >
+            <img align="center" src="{{car.img}}" alt="..." class="centrar mb-4 img-fluid" width="230px" height="170px" >
           <h5 align="center" class="card-title">{{car.name_exemplary.name_brand.name_brand}}</h5>
           <p align="center"class="card-text">{{car.name_exemplary.name_exemplary}}</p>
           <p align="center">Precio: {{car.price}}</p>

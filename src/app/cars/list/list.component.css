@@ -13,6 +13,9 @@ th, td {
 th {
   background-color: #dddddd;
 }
+.botonRojo{
+  background-color: red;
+}
 
 @media (max-width: 600px) {
   td, th {

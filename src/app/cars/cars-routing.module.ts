@@ -18,7 +18,7 @@ const routes: Routes = [
     
       },
       {
-        path: 'deleteCar',
+        path: 'deleteCar/:id',
         component: DeleteComponent,
         canActivate:[RolGuardGuard]
     

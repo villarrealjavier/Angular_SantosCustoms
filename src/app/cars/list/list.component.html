@@ -55,7 +55,7 @@
             <td >{{car.hp}}</td>
               <td *ngIf="role=='ADMIN'">
             <button  pButton icon="pi pi-pencil" [routerLink]="['/cars/updateCar', car.num_bastidor]" routerLinkActive="router-link-active"  label="Editar" ></button>&nbsp;&nbsp;
-            <button pButton icon="pi pi-trash" label="Borrar"></button>
+            <button pButton icon="pi pi-trash" [routerLink]="['/cars/deleteCar', car.num_bastidor]" label="Borrar"></button>
           </td>
           </tr>
       </ng-template>

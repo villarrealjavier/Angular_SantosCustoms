@@ -1,1 +1,192 @@
-<p>delete works!</p>
+<app-navbar></app-navbar>
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-4">
+          <h3>VEHÍCULO</h3>
+        </div>
+        <div class="col-8">
+          <h3>EDITAR INFORMACION</h3>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-body text-center" *ngIf="car">
+                <img src="{{car.img}}" alt="avatar"
+                  class="rounded-circle img-fluid" style="width: 160px; height: 150px;">
+                <h5 class="my-3" name="name">{{car.num_bastidor}}</h5>
+                <p class="text-muted mb-1">{{car.name_exemplary.name_brand.name_brand}}</p>
+                
+              </div>
+            </div>
+           
+          </div>
+        
+        <div class="col-lg-8" *ngIf="car" >
+            
+          <div class="card mb-4">
+              <form action="POST" (ngSubmit)="deleteCar()" enctype="multipart/form-data">
+
+             
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Numero de bastidor</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" name="num_bastidor" id="num_bastidor"  value="{{car.num_bastidor}}" readonly>                
+                    
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Potencia del vehículo:</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" name="hp" id="hp"  value="{{car.hp}}" readonly>
+                   
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Color del vehículo:</p>
+                </div>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" name="color"  id="color" value="{{car.color}}" readonly>
+                   
+                </div>
+                
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Centímetros cúbicos:</p>
+                </div>
+               
+                <div class="col-sm-9">
+                    <input class="form-control" type="number" id="cubic_cent"  value="{{car.cubic_cent}}" readonly>
+                   
+                 
+                </div>
+                
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Año del vehículo:</p>
+                </div>
+               
+                <div class="col-sm-9">
+                    <input class="form-control" type="number" id="year"  value="{{car.year}}" readonly>
+                   
+                 
+                </div>
+                
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Precio del vehículo:</p>
+                </div>
+               
+                <div class="col-sm-9">
+                    <input class="form-control" type="number" id="price"  value="{{car.price}}" readonly>
+                    
+                 
+                </div>
+                
+              </div>
+              <hr>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Vendido</label>
+                <div class="col-sm-9">
+        
+                    <div class="form-check">
+                        <input *ngIf="car.sold==true" class="form-check-input"
+                               type="radio"
+                               value=sold
+                               name="sold"
+                               id="radioMasculino"
+                               checked
+                               disabled
+                               
+                               >
+                               <input *ngIf="car.sold==false" class="form-check-input"
+                               type="radio"
+                               value=sold
+                               name="sold"
+                               id="radioMasculino"
+                               disabled
+                               
+                               >
+                        <label class="form-check-label" for="radioMasculino">
+                          No
+                        </label>
+                    </div>
+        
+                    <div class="form-check">
+                        <input *ngIf="car.sold==true" class="form-check-input"
+                               type="radio"
+                               value=sold
+                               name="sold"
+                               id="radioMasculino"
+                               checked
+                               disabled
+                               >
+
+                               <input *ngIf="car.sold==false" class="form-check-input"
+                               type="radio"
+                               value=sold
+                               name="sold"
+                               id="radioMasculino"
+                               checked
+                               disabled
+                               
+                               >
+                        <label class="form-check-label" for="radioFemenino">
+                          Si
+                        </label>
+                    </div>
+                   
+        
+                </div>
+            </div>
+
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Modelo del vehículo:</p>
+                </div>
+               
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="price"  value="{{car.name_exemplary.name_exemplary}}" readonly>
+                    
+                 
+                </div>
+                
+              </div>
+              <div align="right">
+                <button class="btn btn-danger" type="submit"  >Eliminar</button>&nbsp;&nbsp;
+
+                <button class="btn btn-primary" [routerLink]="['/cars/listCar']" routerLinkActive="router-link-active"  type="button">Volver</button>
+              </div>
+              
+              
+              
+              
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+  

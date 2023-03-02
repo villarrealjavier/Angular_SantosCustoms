@@ -34,6 +34,7 @@ export class CarsService {
     const formData = new FormData();
     formData.append('file', file, file.name);
     formData.append('car', new Blob([JSON.stringify(json)], {type: 'application/json'}));
+    console.log(json)
     return this.http.post<cars>(environment.urlApi+"Cars", formData)
 
    }
@@ -42,6 +43,11 @@ export class CarsService {
     formData.append('file', file, file.name);
     formData.append('car', new Blob([JSON.stringify(json)], {type: 'application/json'}));
     return this.http.put<cars>(environment.urlApi+"Cars/"+num_bastidor, formData)
+
+   }
+
+   deleteCars(id:string):Observable<cars>{
+     return this.http.delete<cars>(environment.urlApi+"Cars/"+id)
 
    }
 }

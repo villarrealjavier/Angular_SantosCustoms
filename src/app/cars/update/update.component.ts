@@ -76,6 +76,13 @@ export class UpdateComponent implements OnInit {
     this.exemplaryService.getExemplaries().subscribe({
       next:(resp)=>{
         this.exemplaries=resp
+      },error:(e)=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ha ocurrido un error al obtener los modelos!',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
       }
     })
   }
@@ -99,7 +106,21 @@ export class UpdateComponent implements OnInit {
         next:(resp)=>{
          window.location.reload()
          this.addCarForm.reset()
+        },error:(e)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ha ocurrido un error al actualizar!',
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
         }
+      })
+    },error:(e)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ha ocurrido un error al obtener el coche!',
+        footer: '<a href="">Why do I have this issue?</a>'
       })
     }
   })

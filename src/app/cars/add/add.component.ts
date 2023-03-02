@@ -5,6 +5,7 @@ import { brand } from 'src/app/interfaces/brand.interface';
 import { ExemplaryService } from '../../exemplary/services/exemplary.service';
 import { exemplary } from '../../interfaces/exemplary.interface';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add',
@@ -96,8 +97,27 @@ addCar(){
       this.json.name_exemplary=resp
       this.carService.addCars(this.addCarForm.get('fileSource')?.value, this.json).subscribe({
         next:(resp)=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'El modelo ha sido añadido con éxito!',
+            text: 'Estas de vuelta en el listado!',
+        });
          this.router.navigate(['/cars/listCar'])
+        },error:(e)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ha ocurrido un error al añadir el coche!',
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
         }
+      })
+    },error:(e)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ha ocurrido un error al obtener el coche!',
+        footer: '<a href="">Why do I have this issue?</a>'
       })
     }
   })

@@ -21,6 +21,11 @@ const routes: Routes = [
    
   },
   {
+    path: 'shoppingCart',
+    loadChildren: () => import('./shopping-cart/shopping-cart.module').then(m => m.ShoppingCartModule),canActivate:[AuthGuardian]
+   
+  },
+  {
     path: 'exemplary',
     loadChildren: () => import('./exemplary/exemplary.module').then(m => m.ExemplaryModule),canActivate:[AuthGuardian]
    

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarsService } from '../cars.service';
 import { cars } from '../../interfaces/cars.interface copy';
+import { ShoppingService } from '../../shopping-cart/services/shopping.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { cars } from '../../interfaces/cars.interface copy';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private service:CarsService) { }
+  constructor(private service:CarsService,private shoppingService:ShoppingService) { }
 
   role:string | null=localStorage.getItem("role") 
   cars:cars[]=[]
@@ -37,6 +38,19 @@ export class ListComponent implements OnInit {
       
     }else{
       this.cars=this.carsRespaldo
+    }
+  }
+  addShoppingCart(num_bastidor:string){
+    let encontrado=false;
+    for(let item of this.shoppingService.shoppingCart){
+      if(item==num_bastidor){
+        encontrado=true;
+      }
+    }
+    if(encontrado==false){
+      this.shoppingService.shoppingCart.push(num_bastidor)
+      console.log(this.shoppingService.shoppingCart)
+
     }
   }
   

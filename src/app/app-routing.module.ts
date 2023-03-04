@@ -17,7 +17,7 @@ const routes: Routes = [
 
   {
     path: 'cars',
-    loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule),canActivate:[AuthGuardian]
+    loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule)
    
   },
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'category',
-    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),canActivate:[AuthGuardian]
+    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
   },
   {
     path: 'users',

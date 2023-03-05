@@ -66,6 +66,7 @@ export class ShoppingCartComponent {
   }
   deleteItem(index:number){
     this.listShoppingCart.splice(index,1)
+    this.service.shoppingCart.splice(index,1)
     window.sessionStorage.setItem('carrito', JSON.stringify(this.listShoppingCart));
 
   }
@@ -95,6 +96,12 @@ export class ShoppingCartComponent {
           text: 'Estas de vuelta en el listado!',
       });
        this.router.navigate(['/cars/listCar'])
+       this.listShoppingCart.splice(0,this.listShoppingCart.length)
+       this.service.shoppingCart.splice(0,this.listShoppingCart.length)
+       window.sessionStorage.setItem('carrito', JSON.stringify(this.listShoppingCart));
+
+
+       
       },error:(e)=>{
         Swal.fire({
           icon: 'error',

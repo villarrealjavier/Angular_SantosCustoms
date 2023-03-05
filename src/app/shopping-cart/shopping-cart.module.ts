@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingRoutingModule } from './shopping-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ShoppingRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],exports:[
     ShoppingCartComponent,
 

@@ -40,16 +40,18 @@ export class ListComponent implements OnInit {
       this.cars=this.carsRespaldo
     }
   }
-  addShoppingCart(num_bastidor:string){
+  addShoppingCart(car:cars){
     let encontrado=false;
     for(let item of this.shoppingService.shoppingCart){
-      if(item==num_bastidor){
+      if(item.num_bastidor==car.num_bastidor){
         encontrado=true;
       }
     }
     if(encontrado==false){
-      this.shoppingService.shoppingCart.push(num_bastidor)
+      this.shoppingService.shoppingCart.push(car)
+      window.sessionStorage.setItem('carrito', JSON.stringify(this.shoppingService.shoppingCart));
       console.log(this.shoppingService.shoppingCart)
+
 
     }
   }

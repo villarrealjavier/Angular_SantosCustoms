@@ -56,7 +56,7 @@
             
             <td >{{car.hp}}</td>
             <td *ngIf="role=='USER'">
-            <button class=" mt-2" pButton icon="pi pi-trash" (click)="addShoppingCart(car.num_bastidor)" label="Añadir al carrito"></button>
+            <button class=" mt-2" pButton icon="pi pi-trash" (click)="addShoppingCart(car)" label="Añadir al carrito"></button>
         </td>
               <td *ngIf="role=='ADMIN'">
             <button  pButton icon="pi pi-pencil" [routerLink]="['/cars/updateCar', car.num_bastidor]" routerLinkActive="router-link-active"  label="Editar" ></button>&nbsp;&nbsp;

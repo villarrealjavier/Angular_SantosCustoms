@@ -45,7 +45,7 @@
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-car>
-          <tr *ngIf="car.sold!=true">
+          <tr>
             <td><img align="center" src="{{car.img}}" alt="..." class="centrar img-fluid" width="250px" height="170px" ></td>
             <td >{{car.name_exemplary.name_brand.name_brand}}</td>
             <td >{{car.name_exemplary.name_exemplary}}</td>
@@ -54,9 +54,11 @@
             <td >{{car.cubic_cent}}</td>
             <td >{{car.hp}}</td>
             
-            <td >{{car.hp}}</td>
-            <td *ngIf="role=='USER'">
+           
+            <td *ngIf="role=='USER' && car.sold!=true">
             <button class=" mt-2" pButton icon="pi pi-trash" (click)="addShoppingCart(car)" label="Añadir al carrito"></button>
+            <td *ngIf="role=='USER' && car.sold==true">
+              <b>Vendido!</b>
         </td>
               <td *ngIf="role=='ADMIN'">
             <button  pButton icon="pi pi-pencil" [routerLink]="['/cars/updateCar', car.num_bastidor]" routerLinkActive="router-link-active"  label="Editar" ></button>&nbsp;&nbsp;

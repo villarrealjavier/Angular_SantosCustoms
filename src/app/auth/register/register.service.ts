@@ -24,7 +24,18 @@ export class RegisterService {
 
       return of(true);
     
-  }))
+  }),catchError(error=>{
+    Swal.fire({
+      icon: 'error',
+      title: 'Error al registrarse, pruebe con otra direccion de correo electrónico o nombre de usuario',
+      text: 'Something went wrong!',
+      footer: '<a href="">Why do I have this issue?</a>'
+    })
+   
+    
+    return of(false)
+  })
+  )
   }
   
  

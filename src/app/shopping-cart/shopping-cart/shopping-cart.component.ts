@@ -100,7 +100,7 @@ export class ShoppingCartComponent {
         console.log('entrando')
         Swal.fire({
           icon: 'success',
-          title: 'El modelo ha sido añadido con éxito!',
+          title: 'Gracias por su compra!',
           text: 'Estas de vuelta en el listado!',
       });
        this.router.navigate(['/cars/listCar'])

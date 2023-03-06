@@ -15,7 +15,6 @@ export class ShoppingService {
 
 
  getShopping(){
-  
   return this.shoppingCart;
  }
 

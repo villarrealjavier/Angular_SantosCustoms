@@ -58,7 +58,7 @@
             <td *ngIf="role=='USER' && car.sold!=true">
             <button class=" mt-2" pButton icon="pi pi-trash" (click)="addShoppingCart(car)" label="Añadir al carrito"></button>
             <td *ngIf="role=='USER' && car.sold==true">
-              <b>Vendido!</b>
+              <b>Vendido!</b> <img class="mb-2 ms-2" src="https://res.cloudinary.com/dpatneiyg/image/upload/v1678107201/Proyecto_JAVIERVILLARREAL/IMAGENES%20COCHES%20BASE%20DE%20DATOS/vendido_flx00j.png" width="50px" height="40px">
         </td>
               <td *ngIf="role=='ADMIN'">
             <button  pButton icon="pi pi-pencil" [routerLink]="['/cars/updateCar', car.num_bastidor]" routerLinkActive="router-link-active"  label="Editar" ></button>&nbsp;&nbsp;

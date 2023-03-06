@@ -59,7 +59,18 @@ export class AuthService {
 
       return of(true);
     
-  }))
+  }),catchError(error=>{
+    Swal.fire({
+      icon: 'error',
+      title: 'Ha ocurrido un error al registrarse, prueba con otro correo o nombre de usuario',
+      text: 'Something went wrong!',
+      footer: '<a href="">Why do I have this issue?</a>'
+    })
+    
+    
+    return of(false)
+  })
+  )
   }
     //Método para comprobar si esta autenticado
     isAuthenticated() {

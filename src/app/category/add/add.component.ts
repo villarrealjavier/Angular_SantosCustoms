@@ -56,7 +56,6 @@ export class AddComponent implements OnInit {
              icon: 'error',
              title: 'Oops...',
              text: 'Algo debe haber salido mal!',
-             footer: '<a href="">Why do I have this issue?</a>'
            })
            
            
@@ -64,9 +63,9 @@ export class AddComponent implements OnInit {
         }else{
           Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'No tienes permisos!',
-            footer: '<a href="">Why do I have this issue?</a>'
+            title: 'Marca existente!',
+            text: 'No puedes introducir una marca con ese nombre!',
+            
           })
          }}})
 

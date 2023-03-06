@@ -32,8 +32,7 @@ export class BrandService {
   
 
   saveBrand(name_brand:string,country:string):Observable<boolean>{
-    console.log(this.token)
-    console.log(name_brand,country)
+   
    
     
     
@@ -46,9 +45,9 @@ export class BrandService {
   }),catchError(error=>{
     Swal.fire({
       icon: 'error',
-      title: 'Oops...',
-      text: 'No tienes permisos!',
-      footer: '<a href="">Why do I have this issue?</a>'
+      title: 'Marca existente!',
+      text: 'No puedes introducir una marca con ese nombre!',
+      
     })
     return of(false)
   }))
@@ -70,7 +69,6 @@ export class BrandService {
       icon: 'error',
       title: 'Oops...',
       text: 'No tienes permisos!',
-      footer: '<a href="">Why do I have this issue?</a>'
     })
     return of(false)
   }))

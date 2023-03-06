@@ -15,7 +15,7 @@
             <div class="card mb-4">
               <div class="card-body text-center" *ngIf="car">
                 <img src="{{car.img}}" alt="avatar"
-                  class="rounded-circle img-fluid" style="width: 160px; height: 150px;">
+                  class="rounded-circle img-fluid" style="width: 245px; height: 210px;">
                 <h5 class="my-3" name="name">{{car.num_bastidor}}</h5>
                 <p class="text-muted mb-1">{{car.name_exemplary.name_brand.name_brand}}</p>
                 
@@ -156,7 +156,7 @@
                     <select class="form-select" name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado"  formControlName="name_exemplary"(change)="capturar()">
                       
                       <option *ngFor="let exemplary of exemplaries" [value]="exemplary.name_exemplary">
-                          {{exemplary.name_exemplary}}
+                          {{exemplary.name_exemplary}}--{{exemplary.name_brand.name_brand}}
                       </option>
                   </select>
                   <p [hidden]="opcionSeleccionado == '0'"></p>

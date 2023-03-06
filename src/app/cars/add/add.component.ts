@@ -108,7 +108,7 @@ addCar(){
             icon: 'error',
             title: 'Oops...',
             text: 'Ha ocurrido un error al añadir el coche!',
-            footer: '<a href="">Why do I have this issue?</a>'
+            
           })
         }
       })
@@ -117,7 +117,7 @@ addCar(){
         icon: 'error',
         title: 'Oops...',
         text: 'Ha ocurrido un error al obtener el coche!',
-        footer: '<a href="">Why do I have this issue?</a>'
+       
       })
     }
   })

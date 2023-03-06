@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     this.service.login(this.username,this.password).subscribe({
         next: (resp) => {
           if (resp) {
-            console.log(resp)
             if(this.formLogin.valid){
               this.login=true;
               Swal.fire({
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
                 title: 'Has iniciado Sesión',
                 text: '¡Bienvenido a los Santos Customs!',
             });
-            this.router.navigate(['/home'])
+            this.router.navigate(['/'])
           }else {
             this.username=''; 
             this.password='';

@@ -55,8 +55,8 @@ export class AddComponent {
           error: (e)=>{
             Swal.fire({
               icon: 'error',
-              title: 'Oops...',
-              text: 'Esa marca ya existe!',
+              title: 'Modelo existente.',
+              text: 'Recuerda que el nombre de los modelos son únicos de cada marca!',
               footer: '<a href="">Why do I have this issue?</a>'
             })
           }

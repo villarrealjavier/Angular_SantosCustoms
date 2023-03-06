@@ -50,7 +50,7 @@ export class ListComponent implements OnInit {
     if(encontrado==false){
       this.shoppingService.shoppingCart.push(car)
       window.sessionStorage.setItem('carrito', JSON.stringify(this.shoppingService.shoppingCart));
-      console.log(this.shoppingService.shoppingCart)
+      
 
 
     }

@@ -40,7 +40,8 @@ export class UpdateComponent implements OnInit {
       this.carService.getCarsbyId(id).subscribe({
         next:(resp)=>{
           this.car=resp
-          console.log(this.car)
+          
+          
 
         },error:(e)=>{
           Swal.fire({
@@ -96,7 +97,7 @@ export class UpdateComponent implements OnInit {
   this.json.sold=this.addCarForm.get('sold')?.value
   this.json.price=this.addCarForm.get('price')?.value
 
-  console.log(this.addCarForm.get('fileSource')?.value)
+  
 
   this.exemplaryService.getExemplaryById(this.addCarForm.get('name_exemplary')?.value).subscribe({
     next:(resp)=>{
@@ -104,6 +105,7 @@ export class UpdateComponent implements OnInit {
       
       this.carService.updateCars(this.addCarForm.get('fileSource')?.value, this.json,this.car.num_bastidor).subscribe({
         next:(resp)=>{
+          
          window.location.reload()
          this.addCarForm.reset()
         },error:(e)=>{
@@ -111,7 +113,6 @@ export class UpdateComponent implements OnInit {
             icon: 'error',
             title: 'Oops...',
             text: 'Ha ocurrido un error al actualizar!',
-            footer: '<a href="">Why do I have this issue?</a>'
           })
         }
       })
@@ -120,7 +121,6 @@ export class UpdateComponent implements OnInit {
         icon: 'error',
         title: 'Oops...',
         text: 'Ha ocurrido un error al obtener el coche!',
-        footer: '<a href="">Why do I have this issue?</a>'
       })
     }
   })

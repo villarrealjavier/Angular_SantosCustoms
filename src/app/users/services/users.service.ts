@@ -21,6 +21,7 @@ export class UsersService {
 
   updateUser(json: any, file: File, username:string):Observable<user>{
     const formData = new FormData();
+  
     formData.append('file', file, file.name);
     formData.append('user', new Blob([JSON.stringify(json)], {type: 'application/json'}));
  

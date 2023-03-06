@@ -11,7 +11,7 @@ import { AuthGuardian } from './auth-guardian.service';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
 },
   
 
@@ -43,8 +43,8 @@ const routes: Routes = [
     loadChildren: () => import('./verify/verify.module').then(m => m.VerifyModule)
     },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
         path: '**',

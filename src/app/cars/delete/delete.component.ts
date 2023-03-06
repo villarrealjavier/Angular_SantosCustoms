@@ -42,7 +42,7 @@ export class DeleteComponent implements OnInit {
       next:(resp)=>{
         Swal.fire({
           icon: 'success',
-          title: 'El modelo ha sido eliminado con éxito!',
+          title: 'El coche ha sido eliminado con éxito!',
           text: 'Estas de vuelta en el listado!',
       });
       this.router.navigate(['/cars/listCar'])
@@ -51,7 +51,7 @@ export class DeleteComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: 'Ha ocurrido un error al eliminar!',
-          footer: '<a href="">Why do I have this issue?</a>'
+          
         })
       }
     })

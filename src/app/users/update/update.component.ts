@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user.interface';
 import { UsersService } from '../services/users.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-update',
@@ -12,10 +13,13 @@ import { UsersService } from '../services/users.service';
 })
 export class UpdateComponent {
 
-  
+  userActual!:user;
   user!:user
+  username!:string
+  jwt: string | null = null;
 
-  constructor(private service:UsersService, private route:ActivatedRoute,private fb:FormBuilder){
+
+  constructor(private service:UsersService, private route:ActivatedRoute,private fb:FormBuilder, private authService:AuthService, private router:Router){
 
   }
   json: any = {
@@ -26,12 +30,28 @@ export class UpdateComponent {
 };
 
   ngOnInit(){
+    this.jwt = localStorage.getItem('Authorization');
+    
     const id = this.route.snapshot.params["id"]
-    this.service.getUser(id).subscribe({
+    if(this.jwt){
+    this.username=this.authService.returnUser(this.jwt)
+    this.service.getUser(this.username).subscribe({
       next:(resp=>{
-        this.user=resp
+        this.userActual=resp
+        this.service.getUser(id).subscribe({
+          next:(resp=>{
+            this.user=resp
+            if(this.userActual.username!=this.user.username){
+              this.router.navigate(['/**'])
+            }
+          })
+        })
+        
+       
+
       })
     })
+  }
     
     
   }

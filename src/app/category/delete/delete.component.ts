@@ -42,7 +42,6 @@ export class DeleteComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: 'No tienes permisos!',
-          footer: '<a href="">Why do I have this issue?</a>'
         })
         
         

@@ -23,7 +23,6 @@ export class AuthService {
   constructor(private http:HttpClient,private service:UsersService) { }
 
   login(username:string,password:string):Observable<boolean>{
-    console.log(username,password)
     
     return this.http.post<any>(environment.urlApi+"signin",{'username':username,'password':password}, this.httpOptions)
     .pipe(switchMap(resp=>{

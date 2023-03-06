@@ -13,6 +13,12 @@ export class ShoppingService {
 
  shoppingCart:cars[]=[]
 
+
+ getShopping(){
+  
+  return this.shoppingCart;
+ }
+
  Purchase(listCars:cars[], username:any):Observable<cars[]>{
   const formData = new FormData();
   formData.append('numbers_bast', new Blob([JSON.stringify(listCars)], {type: 'application/json'}), 'numbers_bast');

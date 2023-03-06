@@ -38,7 +38,7 @@ export class ShoppingCartComponent {
 
   
     this.getCart()
-    console.log(username)
+    
     this.userService.getUser(username).subscribe({
       next:(resp)=>{
         
@@ -65,8 +65,11 @@ export class ShoppingCartComponent {
     }
   }
   deleteItem(index:number){
+    this.total= this.total-this.listShoppingCart[index].price
+   
     this.listShoppingCart.splice(index,1)
     this.service.shoppingCart.splice(index,1)
+    
     window.sessionStorage.setItem('carrito', JSON.stringify(this.listShoppingCart));
 
   }
@@ -94,10 +97,10 @@ export class ShoppingCartComponent {
   
   }
   Purchase(){
-    console.log(this.user)
+    
     this.service.Purchase(this.listShoppingCart,this.json).subscribe({
       next:(resp)=>{
-        console.log('entrando')
+        
         Swal.fire({
           icon: 'success',
           title: 'Gracias por su compra!',
@@ -105,6 +108,7 @@ export class ShoppingCartComponent {
       });
        this.router.navigate(['/cars/listCar'])
        this.vaciarCarrito();
+       this.total=0
 
 
        
@@ -113,7 +117,6 @@ export class ShoppingCartComponent {
           icon: 'error',
           title: 'Oops...',
           text: 'Ha ocurrido al tratar de realizar la compra!',
-          footer: '<a href="">Why do I have this issue?</a>'
         })
 
       }

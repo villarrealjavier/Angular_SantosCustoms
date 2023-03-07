@@ -9,12 +9,14 @@ import { BrandService } from './Brandservices.service';
 })
 export class ListComponent implements OnInit {
 
+  //Implementamos el servicio de marcas
   constructor(private service:BrandService) { }
-  role:string | null=localStorage.getItem("role") 
-  marcas:brand[]=[]
+
+  role:string | null=localStorage.getItem("role") //Obtenemos el rol del usuario para alternar la vista
+  marcas:brand[]=[] // Listado de marcas a mostrar
 
   ngOnInit(): void {
-    this.service.getBrands().subscribe({
+    this.service.getBrands().subscribe({ // Realizamos la peticion y le asignamos la lista de coches a la variable
       next: (resp)=> this.marcas=resp
     })
   }

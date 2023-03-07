@@ -13,15 +13,16 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class UpdateComponent {
 
-  userActual!:user;
-  user!:user
-  username!:string
-  jwt: string | null = null;
+  userActual!:user; //Usuario actual
+  user!:user //Usuario
+  username!:string //Nombre de usuario
+  jwt: string | null = null; // Token
 
-
+//Implementamos el servcio de usuario, activatedRouter, formbuilder, authService y router
   constructor(private service:UsersService, private route:ActivatedRoute,private fb:FormBuilder, private authService:AuthService, private router:Router){
 
   }
+  //Json para la peticion
   json: any = {
   username:'',
   name: '',
@@ -30,18 +31,18 @@ export class UpdateComponent {
 };
 
   ngOnInit(){
-    this.jwt = localStorage.getItem('Authorization');
+    this.jwt = localStorage.getItem('Authorization'); //Obtenemos el token
     
-    const id = this.route.snapshot.params["id"]
+    const id = this.route.snapshot.params["id"] //Recogemos el id de los parámetros
     if(this.jwt){
-    this.username=this.authService.returnUser(this.jwt)
-    this.service.getUser(this.username).subscribe({
+    this.username=this.authService.returnUser(this.jwt) //Devuelve el username a partir del token
+    this.service.getUser(this.username).subscribe({ //Obtiene el usuario mediante el username
       next:(resp=>{
-        this.userActual=resp
-        this.service.getUser(id).subscribe({
+        this.userActual=resp //Se lo asigna el usuario a la variable
+        this.service.getUser(id).subscribe({ // Busca el usuario obtenido por el parámetro
           next:(resp=>{
-            this.user=resp
-            if(this.userActual.username!=this.user.username){
+            this.user=resp //Se lo asigna a la variable user
+            if(this.userActual.username!=this.user.username){ //Comprueba que si el usuario actual a editar es distinto del logeado, te envia a pagina notFound
               this.router.navigate(['/**'])
             }
           })
@@ -55,6 +56,7 @@ export class UpdateComponent {
     
     
   }
+  //Formulario reactivo con sus restricciones para cada campo
   myForm: FormGroup = this.fb.group({
     name:['',[Validators.required, Validators.minLength(3)]],
     email:['',[Validators.required, Validators.minLength(3),Validators.email]],
@@ -65,6 +67,7 @@ export class UpdateComponent {
 
   })
 
+  //Método para que cambie el archivo cada vez que se cambie el archivo introducido
   onFileChange(event:any) {
    
     
@@ -76,15 +79,19 @@ export class UpdateComponent {
     }
   }
 
+  //Método para validar cada campo
   isValidField(field:string){
-    return this.myForm?.controls[field].errors
+    return this.myForm?.controls[field].errors //Comprueba si tiene errores, si es inválido y si esta modificado
     && this.myForm?.controls[field].invalid && this.myForm.controls[field].touched
   }
+  //Método para validar contraseña
   isValidPassword(field:string){
     return this.myForm?.controls[field].errors
-    && this.myForm?.controls[field].invalid && this.myForm.controls[field].touched && this.myForm.controls[field].errors?.['mismatch']
+    && this.myForm?.controls[field].invalid && this.myForm.controls[field].touched && this.myForm.controls[field].errors?.['mismatch']//Comprueba si tiene errores, si es inválido y si esta modificado
+    // y si ambas contraseñas son iguales
   }
 
+  //Método que comprueba que ambas contraseñas son iguales
   match(controlName: string) {
     return (control: FormControl) => {
       if (!control.parent) {
@@ -95,20 +102,21 @@ export class UpdateComponent {
     };
   }
 
+  //Método para actualizar un usuario
   updateUser(){
-   
+//Se le asigna los valores del formulario al json
     this.json.username=this.user.username
     this.json.password = this.myForm.get('password')?.value
     this.json.email= this.myForm.get('email')?.value
     this.json.name=this.myForm.get('name')?.value
 
    
-    this.service.updateUser(this.json,this.myForm.get('fileSource')?.value,this.user.username).subscribe({
+    this.service.updateUser(this.json,this.myForm.get('fileSource')?.value,this.user.username).subscribe({ //Realiza la peticion llamando al servicio y recarga la página
       next:(resp=>{
         window.location.reload()
       })
     })
-    this.myForm.reset()
+    this.myForm.reset() //Resetea el formulario
     
   }
   

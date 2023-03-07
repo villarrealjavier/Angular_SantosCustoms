@@ -12,23 +12,26 @@ import Swal from 'sweetalert2';
   ]
 })
 export class UpdateComponent {
-  brands:brand[]=[]
-  name_exemplary!:string;
-  brand!:brand
-  opcionSeleccionado: string  = '0';
-  verSeleccion: string        = '';
 
+  brands:brand[]=[] //Listado de marcas
+  name_exemplary!:string; //Nombre del modelo
+  brand!:brand //Marca
+  opcionSeleccionado: string  = '0'; //Opcion seleccionada
+  verSeleccion: string        = ''; // Valor de la seleccion
+
+  //Implementamos servicio de las marcas, ActivatedRouter, servicio de modelos y Router
   constructor(private brandService:BrandService, private route:ActivatedRoute, private exemplaryService:ExemplaryService,private router:Router){
 
   }
   ngOnInit(){
-    this.name_exemplary=this.route.snapshot.params["id"]
-    this.getBrands()
+    this.name_exemplary=this.route.snapshot.params["id"] //Recogemos el id del modelo
+    this.getBrands() // Obtenemos las marcas
     
     
 
   }
 
+  //Métodos para obtener las marcas y las asignamos a la lista
   getBrands(){
 
     this.brandService.getBrands().subscribe({
@@ -38,21 +41,23 @@ export class UpdateComponent {
       })
     })
   }
+
+  //Método para actualizar un modelo
   updateExemplary(){
-    this.brandService.getBrandbyId(this.verSeleccion).subscribe({
+    this.brandService.getBrandbyId(this.verSeleccion).subscribe({ //Realizamos la peticion llamando al servicio para obtener una marca mediante su id
       next:(resp=>{
-        this.brand=resp
-        return this.exemplaryService.updateExemplary(this.name_exemplary,this.brand).subscribe({
+        this.brand=resp //Asignamos la marca a la variaable
+        return this.exemplaryService.updateExemplary(this.name_exemplary,this.brand).subscribe({ //Realizamos la peticion de actualizar el modelo llamando al servicio
           next:(resp=>{
-            if(resp){
+            if(resp){ //Si obtenemos una respuesta, mandamos mensaje de éxito
               Swal.fire({
                 icon: 'success',
                 title: 'El modelo ha sido editado con éxito!',
                 text: 'Estas de vuelta en el listado!',
             });
-            this.router.navigate(['/exemplary/listExemplary'])
+            this.router.navigate(['/exemplary/listExemplary']) //Redirigimos al listado de modelos
               
-            }else {
+            }else { //Si no obtenemos respuesta, mandamos mensaje de error
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

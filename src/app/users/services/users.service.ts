@@ -11,14 +11,15 @@ export class UsersService {
 
   constructor(private http:HttpClient) { }
 
-
+//Peticion para obtener un usuario por id
   getUser(id:string):Observable<user>{
     return this.http.get<any>(`${environment.urlApi}users/${id}`)
   }
+  //Peticion para obtener los usuarios
   getUsers():Observable<user[]>{
     return this.http.get<any>(`${environment.urlApi}users`)
   }
-
+//Peticion para actualizar un usuario
   updateUser(json: any, file: File, username:string):Observable<user>{
     const formData = new FormData();
   
@@ -27,6 +28,7 @@ export class UsersService {
  
     return this.http.put<any>(`${environment.urlApi}users/${username}`,formData)
   }
+  //Peticion para eliminar un usuario
   deleteUsers(username:string):Observable<user[]>{
     return this.http.delete<any>(`${environment.urlApi}users/${username}`)
   }

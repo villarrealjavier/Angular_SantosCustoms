@@ -13,22 +13,22 @@ export class AuthInterceptorService implements HttpInterceptor{
     
   }
 
-
+//Metodo para añadir el token en las peticiones
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const jwt: string|null = localStorage.getItem('Authorization');
+    const jwt: string|null = localStorage.getItem('Authorization'); //Recoge el token
     
     let request = req;
     
     if (jwt) {
       request = req.clone({
         setHeaders: {
-          Authorization:  jwt 
+          Authorization: jwt //Añade la cabecera
 
         }
       });
     }
 
-    return next.handle(request).pipe(
+    return next.handle(request).pipe( //Si da error, te lleva a la página principal
     catchError((err: HttpErrorResponse) => {
 
       if (err.status === 401) {

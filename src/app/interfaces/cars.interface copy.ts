@@ -1,6 +1,6 @@
 
 import { model } from './model.interface';
-export interface cars {
+export interface cars { //Interfaz de coches
     num_bastidor:string
     year:number
     hp:number

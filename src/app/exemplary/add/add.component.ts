@@ -13,46 +13,52 @@ import Swal from 'sweetalert2';
   ]
 })
 export class AddComponent {
+
+  //Implementamos formbuilder, router, servicio de marcas, y servicio de modelos
   constructor(private fb: FormBuilder, private router:Router, private brandService:BrandService, private exemplaryService:ExemplaryService ) { }
-  brand!:brand
-  brands:brand[]=[]
-  opcionSeleccionado: string  = '0';
-  verSeleccion: string        = '';
-  name_exemplary:string=''
+
+  brand!:brand //Marca
+  brands:brand[]=[] //Lista de marcas
+  opcionSeleccionado: string  = '0'; // Opcion seleccionada
+  verSeleccion: string        = ''; //Valor seleccionado
+  name_exemplary:string='' //Nombre del modelo
 
   ngOnInit(): void {
-    this.getBrands()
+    this.getBrands() //Obtenemos las marcas
   }
 
-  @ViewChild('formLogin') formLogin!: NgForm
+  @ViewChild('formLogin') formLogin!: NgForm //Formulario de tipo template
 
+  //Validador del nombre del modelo
   validateExemplary(): boolean{
+    //Asignamos el valor a una variable que mas tarde usaremos
     this.name_exemplary = this.formLogin?.controls['name_exemplary'].value;
     
-    return this.formLogin?.controls['name_exemplary'].invalid
+    return this.formLogin?.controls['name_exemplary'].invalid //Comprobamos si es inválido o si esta modificado
     && this.formLogin?.controls['name_exemplary'].touched;
 
   }
 
   
  
+  //Método para guardar un modelo
   saveExemplary(){
-    this.brandService.getBrandbyId(this.verSeleccion).subscribe({
+    this.brandService.getBrandbyId(this.verSeleccion).subscribe({ //Realiza la peticion llamando al servicio, y busca la marca por id
       next:(resp=>{
-        this.brand=resp
-        return this.exemplaryService.saveExemplary(this.name_exemplary,this.brand).subscribe({
+        this.brand=resp //Asigna la marca a una variable
+        return this.exemplaryService.saveExemplary(this.name_exemplary,this.brand).subscribe({ // Realiza la peticion para guardar el modelo llamando al servicio
           next:(resp)=>{
-            if(resp){
+            if(resp){ //Si obtenemos una respuesta le enviamos un mensaje de éxito
               Swal.fire({
                 icon: 'success',
                 title: 'El modelo ha sido añadido con éxito!',
                 text: 'Estas de vuelta en el listado!',
             });
-            this.router.navigate(['/exemplary/listExemplary'])
+            this.router.navigate(['/exemplary/listExemplary']) //Redirigimos al listado de modelos
               
             }
           },
-          error: (e)=>{
+          error: (e)=>{ //Si obtenemos un error, lanzamos mensaje de error
             Swal.fire({
               icon: 'error',
               title: 'Modelo existente.',
@@ -66,6 +72,7 @@ export class AddComponent {
     
 
   }
+  //Método que realiza una peticion de todas las marcas y las asigna a la lista
   getBrands(){
 
     this.brandService.getBrands().subscribe({
@@ -75,6 +82,7 @@ export class AddComponent {
       })
     })
   }
+  //Método para que cambie la seleccion en funcion del valor escogido
   capturar() {
     // Pasamos el valor seleccionado a la variable verSeleccion
     this.verSeleccion = this.opcionSeleccionado;

@@ -18,13 +18,14 @@ export class VerifyComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params=>{
-      this.code=params['code']
-      this.username=params['username']
+      this.code=params['code']  //Recoge el codigo de los parametros mediante los queryParams
+      this.username=params['username']//Recoge el username de los parametros mediante los queryParams
     })
 
+    //Realiza la peticion mediante la llamada al servicio 
     this.service.verify(this.code,this.username).subscribe({
       next:(resp=>{
-        if(resp){
+        if(resp){ //Si obtiene respuesta, verifica y salta mensaje de éxito
           Swal.fire({
             title: '¡Tu email ha sido verficado!',
             text: "Haz click para ir al login!",
@@ -33,7 +34,7 @@ export class VerifyComponent {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ir al login!'
-          }).then((result) => {
+          }).then((result) => { //Si confirma ir al login lo lleva a la página principal
             if (result.isConfirmed) {
               this.router.navigate(['/'])
             }
@@ -46,11 +47,7 @@ export class VerifyComponent {
   };
       
   
-  //   Swal.fire({
-  //     icon: 'success',
-  //     title: 'Su cuenta ha sido verficada con éxito!',
-  //     text: 'Estas de vuelta en el listado!',
-  // });
+
     
   }
 

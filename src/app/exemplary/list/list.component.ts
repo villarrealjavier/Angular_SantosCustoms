@@ -11,14 +11,15 @@ import { ExemplaryService } from '../services/exemplary.service';
 })
 export class ListComponent {
 
-  listExemplary:exemplary[]=[]
-  role:string | null=localStorage.getItem("role") 
+  listExemplary:exemplary[]=[] // Listado de modelos
+  role:string | null=localStorage.getItem("role")  //Obtenemos el rol para alternar la vista
+  //Implementamos ActivatedRouter y el servicio del modelo
   constructor(private route:ActivatedRoute,private service:ExemplaryService ){
 
   }
 
   ngOnInit(){
-     this.service.getExemplaries().subscribe({
+     this.service.getExemplaries().subscribe({ //Obtenemos todos los modelos y le asignamos la lista a las variables
       next:(resp=>{
       this.listExemplary=resp
     

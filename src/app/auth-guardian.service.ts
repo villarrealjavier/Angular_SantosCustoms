@@ -7,7 +7,7 @@ import { AuthService } from './auth/auth.service';
 export class AuthGuardian implements CanActivate, CanActivateChild{
 
     constructor(private router:Router, private servicio: AuthService){};
-
+//Guardian para ver si esta autenticado
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
         
@@ -20,7 +20,7 @@ export class AuthGuardian implements CanActivate, CanActivateChild{
         
     
       }
-    
+    //Guardian para ver si esta autenticado
       canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     
        

@@ -10,19 +10,13 @@ import Swal from 'sweetalert2';
 })
 export class BrandService {
 
+  //Implementamos httpClient para realizar las peticiones
   constructor(private http:HttpClient) { }
-  token:any=localStorage.getItem('Authorization');;
+
+  token:any=localStorage.getItem('Authorization'); 
   
 
-  /*httpOptions={
-    headers: new HttpHeaders({'Authorization':this.token})
-    headers: new HttpHeaders({'Access-Control-Allow-Origin':'*',
-    'Authorization':this.token,"Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With, Accept",
-    "Access-Control-Allow-Credentials": "true",
-    "Access-Control-Max-Age":"3600"
-})
-  }*/
+  //Peticion para eliminar una marca
   deleteBrand(name_brand:string):Observable<brand>{
     
     return this.http.delete<brand>(environment.urlApi+"brand/"+name_brand)
@@ -30,19 +24,15 @@ export class BrandService {
   }
 
   
-
-  saveBrand(name_brand:string,country:string):Observable<boolean>{
-   
-   
-    
-    
+//Peticion para añadir una marca
+  saveBrand(name_brand:string,country:string):Observable<boolean>{   
     return this.http.post<any>(environment.urlApi+"brand",{'name_brand':name_brand,'country':country})
-    .pipe(switchMap(resp=>{
+    .pipe(switchMap(resp=>{ //Si no da error, devolvemos true
     
 
       return of(true);
     
-  }),catchError(error=>{
+  }),catchError(error=>{ //Si capta algun error, devolvemos false y mandamos mensaje de error
     Swal.fire({
       icon: 'error',
       title: 'Marca existente!',
@@ -52,19 +42,22 @@ export class BrandService {
     return of(false)
   }))
   }
+
+  //Peticion para obtener una marca mediante el id
   getBrandbyId(id:string):Observable<brand>{
     
     return this.http.get<brand>(environment.urlApi+"brand/"+id)
 
   }
 
+  //Peticion para updatear una marca
   updateBrand(name_brand:string,country:string):Observable<boolean>{
     return this.http.put<any>(environment.urlApi+"brand/"+name_brand,{'country':country})
-    .pipe(switchMap(resp=>{
+    .pipe(switchMap(resp=>{ //Si no da error, devolvemos true
     
       return of(true);
     
-  }),catchError(error=>{
+  }),catchError(error=>{ //Si capta algun error, devolvemos false y mandamos mensaje de error
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -76,6 +69,7 @@ export class BrandService {
 
   
 
+  //Peticion para obtener una lista de marcas
   getBrands():Observable<brand[]>{
     return this.http.get<brand[]>(environment.urlApi+"brand")
   }

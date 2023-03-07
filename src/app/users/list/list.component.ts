@@ -10,16 +10,17 @@ import { AuthService } from '../../auth/auth.service';
   
 })
 export class ListComponent {
-  listUsers:user[]=[]
-  usernameActual:string|null=localStorage.getItem("username");
+  listUsers:user[]=[] //Listado de usuarios
+  usernameActual:string|null=localStorage.getItem("username"); //Username del usuario
 
+  //Implementamos el servicio de usuarios, y el authService
   constructor(private service:UsersService, private AuthService:AuthService){
 
   }
 
 
   ngOnInit(){
-    this.service.getUsers().subscribe({
+    this.service.getUsers().subscribe({ //Obtenemos todos los usuarios y se los asignamos a la lista
       next:(resp=>{
         this.listUsers=resp
         

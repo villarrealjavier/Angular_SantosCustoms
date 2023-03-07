@@ -13,29 +13,39 @@ import Swal from 'sweetalert2';
 })
 export class DeleteComponent {
 
+  //Implementamos el servicio de usuarios, activatedRouter para recoger los parámetros, formbuildeer y router
   constructor(private service:UsersService, private route:ActivatedRoute,private fb:FormBuilder,private router:Router){
 
   }
-  user!:user
+  user!:user // Usuario
+
   ngOnInit(){
-    const id = this.route.snapshot.params["id"]
-    this.service.getUser(id).subscribe({
+    const id = this.route.snapshot.params["id"] //Recogemos el usuario actual
+    this.service.getUser(id).subscribe({ //Realizamos la peticion de busqueda del usuario mediante el id
       next:(resp=>{
         this.user=resp
       })
     })
   }
+  //Método para eliminar un usuario
   deleteUser(){
-    this.service.deleteUsers(this.user.username).subscribe({
-      next:(resp=>{
+    this.service.deleteUsers(this.user.username).subscribe({ //Realizamos la peticion llamando al servicio
+      next:(resp=>{ //Si no tiene error, mandamos mensaje de éxito
         Swal.fire({
           icon: 'success',
           title: 'El usuario ha sido eliminado con éxito!',
           text: 'Estas de vuelta en el listado!',
       });
-      this.router.navigate(['/users/listUsers'])
+      this.router.navigate(['/users/listUsers']) //Redirigimos a la lista de usuarios
 
-      })
+      }), error:(e)=>{ //Si capta un error, lanza mensaje de error
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ha ocurrido al eliminar el usuario!',
+          
+        })
+      }
     })
   }
 }

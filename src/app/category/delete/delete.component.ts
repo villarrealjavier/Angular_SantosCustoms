@@ -32,7 +32,7 @@ export class DeleteComponent implements OnInit {
           
           Swal.fire({
             icon: 'success',
-            title: 'La marca ha sido editada con éxito!',
+            title: 'La marca ha sido eliminada con éxito!',
             text: 'Estas de vuelta en el listado!',
         });
         this.router.navigate(['/category/listCategory'])

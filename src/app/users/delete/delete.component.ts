@@ -30,7 +30,7 @@ export class DeleteComponent {
       next:(resp=>{
         Swal.fire({
           icon: 'success',
-          title: 'La marca ha sido añadida con éxito!',
+          title: 'El usuario ha sido eliminado con éxito!',
           text: 'Estas de vuelta en el listado!',
       });
       this.router.navigate(['/users/listUsers'])

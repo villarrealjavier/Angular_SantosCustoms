@@ -99,7 +99,7 @@ addCar(){
         next:(resp)=>{
           Swal.fire({
             icon: 'success',
-            title: 'El modelo ha sido añadido con éxito!',
+            title: 'El coche ha sido añadido con éxito!',
             text: 'Estas de vuelta en el listado!',
         });
          this.router.navigate(['/cars/listCar'])

@@ -15,55 +15,57 @@ import { UsersService } from '../users/services/users.service';
 })
 export class AuthService {
 
+  //Cabecera para mandar un json
   httpOptions={
     headers: new HttpHeaders({'Content-Type':'application/json'})
   }
-  user!:user
+  user!:user //Variable usuario
 
+  //Importamos el httpClient para realizar las peticiones y el servicio de usuario
   constructor(private http:HttpClient,private service:UsersService) { }
 
+  //Método el cual hará login
   login(username:string,password:string):Observable<boolean>{
     
-    return this.http.post<any>(environment.urlApi+"signin",{'username':username,'password':password}, this.httpOptions)
+    return this.http.post<any>(environment.urlApi+"signin",{'username':username,'password':password}, this.httpOptions) //Realizamos la peticion
     .pipe(switchMap(resp=>{
-      //  let indice = resp.indexOf(" ");
-      // console.log(resp.token.substring(indice, resp.token.length))
-      localStorage.setItem('Authorization',resp.token)
+ 
+      localStorage.setItem('Authorization',resp.token) // Metemos el token en el localStorage
       
-      const decodedToken :token = jwt_decode(resp.token);
-      localStorage.setItem("role", decodedToken.role)
-      localStorage.setItem("username", decodedToken.sub)
-      localStorage.setItem('loggin',"true");
-      return of(true);
+      const decodedToken :token = jwt_decode(resp.token); // Descodificamos el token
+      localStorage.setItem("role", decodedToken.role) // Metemos el rol en el localStorage
+      localStorage.setItem("username", decodedToken.sub) //Metemos el username en el localStorage
+      localStorage.setItem('loggin',"true"); // Ponemos el loggin a true
+      return of(true); //Devolvemos true
     
-  }),catchError(error=>{
+  }),catchError(error=>{ // Si captamos algun error, ponemos el login a false, borramos el token y devolvemos mensaje de error
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'Something went wrong!',
-      footer: '<a href="">Why do I have this issue?</a>'
+      
     })
     localStorage.setItem('loggin',"false");
     localStorage.removeItem("Authorization");
     
-    return of(false)
+    return of(false) //Devolvemos false
   }))
   }
+  //Metodo para registrarse
   register(username:string,password:string,email:string,name:string):Observable<boolean>{
     console.log(username,password)
     
     return this.http.post<any>(environment.urlApi+"sign_up/submit",{'username':username,'password':password,'email':email,'name':name}, this.httpOptions)
-    .pipe(switchMap(resp=>{
+    .pipe(switchMap(resp=>{ //Realizamos la peticion
     
 
-      return of(true);
+      return of(true);//Si no da error, devolvemos true
     
-  }),catchError(error=>{
+  }),catchError(error=>{ //Si da error devolvemos un mensaje de error y devolvemos false
     Swal.fire({
       icon: 'error',
       title: 'Ha ocurrido un error al registrarse, prueba con otro correo o nombre de usuario',
       text: 'Something went wrong!',
-      footer: '<a href="">Why do I have this issue?</a>'
     })
     
     
@@ -100,26 +102,7 @@ export class AuthService {
 
      
     }
-    // returnUserCompleted(jwt: string):any{
-    //   const decodedToken :token = jwt_decode(jwt);
-      
-      
-      
-    //   if(decodedToken){
-        
-    //     const username=decodedToken.sub
-    //     this.service.getUser(username).subscribe({
-    //       next:(resp=>{
-    //         this.user=resp
-            
-    //       })
-    //     })
-    //     return this.user;
-       
-    //   }
-
-     
-    // }
+   
 
 
 }

@@ -14,14 +14,18 @@ import Swal from 'sweetalert2';
 })
 export class AddComponent implements OnInit {
 
- dateDay = new Date().getFullYear();
-  exemplaries:exemplary[]= []
-  opcionSeleccionado: string  = '0';
-  verSeleccion: string        = '';
+  
+ dateDay = new Date().getFullYear(); // Año actual
+  exemplaries:exemplary[]= [] // Lista de modelos las cuales vamos a mostrar
+  opcionSeleccionado: string  = '0'; // Opcion seleccionada en el desplegable por defecto
+  verSeleccion: string        = ''; // Seleccion escogida (Valor)
+
+  //Implementamos Servicio de modelos, router, servicio de coches, formbuilder para la validacion
   constructor(private exemplaryService:ExemplaryService, private router:Router, 
     private carService:CarsService,private fb:FormBuilder) { }
 
 
+    //Json utilizado para añadir un coche
   json: any = {
     num_bastidor:'',
     year: '',
@@ -35,9 +39,10 @@ export class AddComponent implements OnInit {
   };
 
 
+  //Formulario reactivo con sus respectivos campos y validaciones para cada uno de ellos
   addCarForm: FormGroup = this.fb.group({
     num_bastidor:['',[Validators.required, Validators.minLength(11),Validators.maxLength(12)]],
-    year:['',[Validators.required, Validators.min(1970), Validators.max(this.dateDay)]],
+    year:['',[Validators.required, Validators.min(1970), Validators.max(this.dateDay)]], //Fecha mayor que 1970 y menor que la actual
     hp:['',[Validators.required,Validators.min(50), Validators.max(1000)]],
     color:['',[Validators.required,Validators.minLength(3)]],
     cubic_cent:['',[Validators.required, Validators.min(1000), Validators.max(9000)]],
@@ -45,7 +50,7 @@ export class AddComponent implements OnInit {
     sold:['false',[Validators.required]],
     file:['',[Validators.required]],
     price:['',[Validators.required, Validators.min(1), Validators.max(5000000)]],
-    fileSource:['',[Validators.required]]
+    fileSource:['',[Validators.required]] //Archivo el cual añadiremos en la peticion
     
 
 
@@ -55,33 +60,39 @@ export class AddComponent implements OnInit {
 
     
   })
+
+  //Validacion de campo
   isValidField(field:string){
-    return this.addCarForm?.controls[field].errors
+    return this.addCarForm?.controls[field].errors //Comprobamos si tiene errores, si es inválido y si está modificado
     && this.addCarForm?.controls[field].invalid && this.addCarForm.controls[field].touched
   }
 
 
   ngOnInit(): void {
-    this.getExemplaries()
+    this.getExemplaries() // Llamamos al método el cual cargará todos nuestros modelos
    
   }
 
+
+  //Método el cual llama al servicio para cargar todos sus modelos
   getExemplaries(){
     this.exemplaryService.getExemplaries().subscribe({
       next:(resp)=>{
-        this.exemplaries=resp
+        this.exemplaries=resp // Asigna las respuestas a la lista de modelos
       }
     })
   }
 
-
+//Metodo para cuando cambie el valor del desplegable que se actualice
   capturar() {
     // Pasamos el valor seleccionado a la variable verSeleccion
     this.verSeleccion = this.opcionSeleccionado;
     
 }
 
+//Método el cual añadirá nuestro coche, llamando al servicio
 addCar(){
+  //Asignamos los valores del formulario al json creado
   this.json.num_bastidor=this.addCarForm.get('num_bastidor')?.value
   this.json.year=this.addCarForm.get('year')?.value
   this.json.color=this.addCarForm.get('color')?.value
@@ -90,19 +101,19 @@ addCar(){
   this.json.sold=this.addCarForm.get('sold')?.value
   this.json.price=this.addCarForm.get('price')?.value
 
-  console.log(this.json.name_exemplary)
+ 
 
-  this.exemplaryService.getExemplaryById(this.addCarForm.get('name_exemplary')?.value).subscribe({
-    next:(resp)=>{
-      this.json.name_exemplary=resp
-      this.carService.addCars(this.addCarForm.get('fileSource')?.value, this.json).subscribe({
-        next:(resp)=>{
+  this.exemplaryService.getExemplaryById(this.addCarForm.get('name_exemplary')?.value).subscribe({ //Buscamos el modelo por id recogido del formulario
+    next:(resp)=>{ //Si obtenemos respuesta
+      this.json.name_exemplary=resp //Le asigamos la respuesta al json
+      this.carService.addCars(this.addCarForm.get('fileSource')?.value, this.json).subscribe({ //Realizamos la peticion y le pasamos el json y el fileSource
+        next:(resp)=>{ //Si no posee errores, lanzamos mensaje 
           Swal.fire({
             icon: 'success',
             title: 'El coche ha sido añadido con éxito!',
             text: 'Estas de vuelta en el listado!',
         });
-         this.router.navigate(['/cars/listCar'])
+         this.router.navigate(['/cars/listCar']) //Redirigimos al listado
         },error:(e)=>{
           Swal.fire({
             icon: 'error',
@@ -112,7 +123,7 @@ addCar(){
           })
         }
       })
-    },error:(e)=>{
+    },error:(e)=>{ //Si capta errores, lanzamos el mensaje de error
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

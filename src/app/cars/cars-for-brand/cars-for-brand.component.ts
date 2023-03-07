@@ -11,17 +11,18 @@ import {  CarsService } from '../cars.service';
 })
 export class CarsForBrandComponent {
 
-  carsbyBrand:cars[]=[]
+  carsbyBrand:cars[]=[] //Lista de coches
 
+  //Implementamos el activateRouter, para recoger el parametro y el servicio de coches
   constructor(private route:ActivatedRoute,private service:CarsService){
 
   }
   ngOnInit(){
-    const id = this.route.snapshot.params["id"]
-    this.service.getCarsbyBrand(id).subscribe({
+    const id = this.route.snapshot.params["id"] //Recogemos el id de la marca
+    this.service.getCarsbyBrand(id).subscribe({ //Realizamos la peticion y buscamos todos los coches en funcion de la marca
       next:(resp=>{
         this.carsbyBrand=resp;
-        console.log(this.carsbyBrand)
+        
       })
     })
   }

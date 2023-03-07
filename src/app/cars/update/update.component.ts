@@ -14,12 +14,13 @@ import Swal from 'sweetalert2';
 })
 export class UpdateComponent implements OnInit {
 
-  dateDay = new Date().getFullYear();
-  car!:cars
-  exemplaries:exemplary[]= []
-  opcionSeleccionado: string  = '0';
-  verSeleccion: string        = '';
+  dateDay = new Date().getFullYear();  // Año actual
+  car!:cars //Coche el cual vamos a updatear
+  exemplaries:exemplary[]= [] // Lista de modelos las cuales vamos a mostrar
+  opcionSeleccionado: string  = '0'; // Opcion seleccionada en el desplegable por defecto
+  verSeleccion: string        = ''; // Seleccion escogida (Valor)
 
+//Json utilizado para actualizar un coche
   json: any = {
     num_bastidor:'',
     year: '',
@@ -32,18 +33,20 @@ export class UpdateComponent implements OnInit {
 
   };
 
+  //Implementamos el servicio de modelos, el router, el servicio de coches, formbuilder para la validacion
+  // y el activatedRouter para recoger los parametros
   constructor(private exemplaryService:ExemplaryService, private router:Router, 
     private carService:CarsService,private fb:FormBuilder,private route:ActivatedRoute) { }
 
     ngOnInit(): void {
-      const id =this.route.snapshot.params["id"]
-      this.carService.getCarsbyId(id).subscribe({
+      const id =this.route.snapshot.params["id"] //Recogemos el identificador del coche
+      this.carService.getCarsbyId(id).subscribe({ //Buscamos el coche mediante su identificador
         next:(resp)=>{
-          this.car=resp
+          this.car=resp //Asignamos el coche a la variable
           
           
 
-        },error:(e)=>{
+        },error:(e)=>{ //Si hay algun error, lanzamos un mensaje de error
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -52,13 +55,14 @@ export class UpdateComponent implements OnInit {
           })
         }
       })
-      this.getExemplaries()
+      this.getExemplaries() // Llamamos al método el cual obtiene todos los modelos
      
     }
 
+      //Formulario reactivo con sus respectivos campos y validaciones para cada uno de ellos
   addCarForm: FormGroup = this.fb.group({
   
-    year:['',[Validators.required, Validators.min(1970), Validators.max(this.dateDay)]],
+    year:['',[Validators.required, Validators.min(1970), Validators.max(this.dateDay)]], //Fecha mayor que 1970 y menor que la actual
     hp:['',[Validators.required,Validators.min(50), Validators.max(1000)]],
     color:['',[Validators.required,Validators.minLength(3)]],
     cubic_cent:['',[Validators.required, Validators.min(1000), Validators.max(9000)]],
@@ -66,18 +70,19 @@ export class UpdateComponent implements OnInit {
     sold:['false',[Validators.required]],
     file:['',[Validators.required]],
     price:['',[Validators.required, Validators.min(1), Validators.max(5000000)]],
-    fileSource:['',[Validators.required]]
+    fileSource:['',[Validators.required]] //Archivo el cual añadiremos en la peticion
   })
-
+//Validacion de campo
   isValidField(field:string){
-    return this.addCarForm?.controls[field].errors
+    return this.addCarForm?.controls[field].errors //Comprobamos si tiene errores, si es inválido y si está modificado
     && this.addCarForm?.controls[field].invalid && this.addCarForm.controls[field].touched
   }
+  //Método el cual llama al servicio para cargar todos sus modelos
   getExemplaries(){
     this.exemplaryService.getExemplaries().subscribe({
       next:(resp)=>{
-        this.exemplaries=resp
-      },error:(e)=>{
+        this.exemplaries=resp // Asigna las respuestas a la lista de modelos
+      },error:(e)=>{ //Si hay algun error, lanzamos mensaje de error
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -88,7 +93,9 @@ export class UpdateComponent implements OnInit {
     })
   }
 
+//Metodo para actualizar el coche
   updateCar(){
+    //Asignamos los valores del formulario al json creado
     this.json.num_bastidor=this.car.num_bastidor
   this.json.year=this.addCarForm.get('year')?.value
   this.json.color=this.addCarForm.get('color')?.value
@@ -99,16 +106,16 @@ export class UpdateComponent implements OnInit {
 
   
 
-  this.exemplaryService.getExemplaryById(this.addCarForm.get('name_exemplary')?.value).subscribe({
+  this.exemplaryService.getExemplaryById(this.addCarForm.get('name_exemplary')?.value).subscribe({ //Buscamos el modelo por id recogido del formulario
     next:(resp)=>{
       this.json.name_exemplary=resp
       
-      this.carService.updateCars(this.addCarForm.get('fileSource')?.value, this.json,this.car.num_bastidor).subscribe({
+      this.carService.updateCars(this.addCarForm.get('fileSource')?.value, this.json,this.car.num_bastidor).subscribe({ //Realizamos la peticion y le pasamos el json y el fileSource
         next:(resp)=>{
           
-         window.location.reload()
-         this.addCarForm.reset()
-        },error:(e)=>{
+         window.location.reload() //Actualizamos la página para ver los cambios
+         this.addCarForm.reset() //Reseteamos los valores del formulario
+        },error:(e)=>{ //Si captamos algun error, lanzamos mensaje de error
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -116,7 +123,7 @@ export class UpdateComponent implements OnInit {
           })
         }
       })
-    },error:(e)=>{
+    },error:(e)=>{ //Si captamos algun error, lanzamos mensaje de error
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

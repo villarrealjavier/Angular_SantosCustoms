@@ -55,6 +55,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("username");
     localStorage.removeItem("role");
     localStorage.setItem("loggin","false")
+    window.location.reload()
     
 
   }

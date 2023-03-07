@@ -18,10 +18,10 @@ export class ShoppingService {
   return this.shoppingCart;
  }
 
- Purchase(listCars:cars[], username:any):Observable<cars[]>{
+ Purchase(listCars:cars[], username:string):Observable<cars[]>{
   const formData = new FormData();
   formData.append('numbers_bast', new Blob([JSON.stringify(listCars)], {type: 'application/json'}), 'numbers_bast');
-  formData.append('user',  new Blob([JSON.stringify(username)], {type: 'application/json'}));
+  formData.append('username', username);
   
 
   return this.http.post<any>(`${environment.urlApi}Purchase`,formData)

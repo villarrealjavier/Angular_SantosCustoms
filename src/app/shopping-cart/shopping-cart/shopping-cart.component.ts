@@ -15,7 +15,7 @@ export class ShoppingCartComponent {
 
   listShoppingCart:cars[] =[] 
   total!:number;
-  user!:user
+  usernameActual!:string
   json: any = {
     username:'',
     name: '',
@@ -34,26 +34,11 @@ export class ShoppingCartComponent {
     let username= localStorage.getItem('username')
    
    if(username!=null){
-
-
-  
+    this.usernameActual=username
     this.getCart()
     
-    this.userService.getUser(username).subscribe({
-      next:(resp)=>{
-        
-        this.json.username=resp.username
-          this.json.name=resp.name
-          this.json.password=resp.password
-          this.json.email=resp.email
-      }
-      
-    })
   }
   
-
-    
-    
     this.total=this.getTotal()
 
   }
@@ -98,7 +83,7 @@ export class ShoppingCartComponent {
   }
   Purchase(){
     
-    this.service.Purchase(this.listShoppingCart,this.json).subscribe({
+    this.service.Purchase(this.listShoppingCart,this.usernameActual).subscribe({
       next:(resp)=>{
         
         Swal.fire({

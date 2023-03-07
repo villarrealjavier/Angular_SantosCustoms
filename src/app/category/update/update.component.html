@@ -50,7 +50,7 @@
                     
   
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn btn-warning btn-lg">Actualizar Marca</button>
+                      <button type="submit" class="btn btn-warning btn-lg" [disabled]="myForm.invalid">Actualizar Marca</button>
                       &nbsp;&nbsp;
                     
                       <button type="button" class="btn btn-danger btn-lg"  [routerLink]="['/category/listCategory']" routerLinkActive="router-link-active"  >Volver</button>

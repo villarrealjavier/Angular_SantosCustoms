@@ -21,12 +21,12 @@
                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"></h5>
   
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="form2Example17"><b>Username:</b></label>
+                        <label for="username" class="form-label" for="form2Example17">Username:</label>
                       <input type="text" id="username" 
                             name="username" 
                             class="form-control form-control-lg"  
                             ngModel
-                           
+                           aria-label="input"
                             minlength="3"
                             required/>
 
@@ -36,11 +36,12 @@
                     </div>
   
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="form2Example27"><b>Contraseña:</b></label>
+                        <label for="password" class="form-label" for="form2Example27">Contraseña:</label>
                       <input type="password" id="password" 
                             class="form-control form-control-lg" 
                             ngModel 
                             name="password"
+                            aria-label="input"
                             minlength="3"
                             required />
                       <span class="form-text text-danger" *ngIf="validatePassword()">
@@ -52,7 +53,7 @@
                       <button class="btn btn-dark btn-lg btn-block" type="submit" [disabled]="formLogin.invalid">Iniciar Sesión</button>
                     </div>
   
-                    <a class="small text-muted" href="#!">Forgot password?</a>
+                    
                     <p class="mb-5 pb-lg-2" style="color: #393f81;">¿No tienes cuenta? <a href="#" [routerLink]="['/auth/register']"
                         style="color: #393f81;">Registrate Aquí</a></p>
                     <a href="#!" class="small text-muted">Terminos de uso. </a>

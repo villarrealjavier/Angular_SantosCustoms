@@ -14,7 +14,7 @@
   
                     <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example17"><b>Nombre del modelo:</b></label>
-                      <input type="text" id="name_exemplary" 
+                      <input type="text" id="name_exemplary"  aria-label="name_exemplary"
                             name="name_exemplary" 
                             class="form-control form-control-lg"  
                             ngModel
@@ -29,7 +29,7 @@
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                             <label class="form-label" for="form3Example1c">Marca: </label>
-                            <select name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+                            <select name="opcionSeleccionado" aria-label="select" [(ngModel)]="opcionSeleccionado" (change)="capturar()">
                               
                               <option *ngFor="let brand of brands" [value]="brand.name_brand">
                                   {{brand.name_brand}}

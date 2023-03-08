@@ -32,7 +32,7 @@
                           <label class="form-label" for="form3Example1c">Marca: </label>
                           <select  name="opcionSeleccionado" aria-label="select" [(ngModel)]="opcionSeleccionado" (change)="capturar()" required="required" class="form-control">
                             
-                            <option required *ngFor="let brand of brands" [value]="brand.name_brand">
+                            <option required *ngFor="let brand of brands" [value]="brand.name_brand" checked>
                                 {{brand.name_brand}}
                             </option>
                         </select>
@@ -49,7 +49,7 @@
                     
   
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn btn-warning btn-lg" [disabled]="formLogin.invalid" >Actualizar Modelo</button>
+                      <button type="submit" class="btn btn-primary btn-lg" [disabled]="formLogin.invalid" >Actualizar Modelo</button>
                       &nbsp;&nbsp;
                     
                       <button type="button" class="btn btn-danger btn-lg"  [routerLink]="['/exemplary/listExemplary']" routerLinkActive="router-link-active"  >Volver</button>

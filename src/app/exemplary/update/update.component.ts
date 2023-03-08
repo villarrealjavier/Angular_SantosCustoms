@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BrandService } from '../../category/list/Brandservices.service';
 import { brand } from '../../interfaces/brand.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExemplaryService } from '../services/exemplary.service';
 import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-update',
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2';
   ]
 })
 export class UpdateComponent {
+  @ViewChild('formLogin') formLogin!: NgForm //Formulario de tipo template
 
   brands:brand[]=[] //Listado de marcas
   name_exemplary!:string; //Nombre del modelo
